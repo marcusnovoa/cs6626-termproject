@@ -1,3 +1,6 @@
+Marcus Novoa & Brandon Olah
+2/03/2021
+
 Dice Tests:
 	0: Test for handling of when no dice are made.
 	4: Test the amount of dice needed for Can't Stop.

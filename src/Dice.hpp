@@ -1,8 +1,11 @@
-//Marcus Novoa & Brandon Olah
+/*
+ * Created by Marcus Novoa & Brandon Olah
+ * Last Updated: Feb 3, 2021
+ *
+ */
 #ifndef DICE_HPP_
 #define DICE_HPP_
 
-#pragma once
 #include "tools.hpp"
 #include <iostream>
 
@@ -11,19 +14,18 @@ using namespace std;
 class Dice {
 public:
 	Dice(int n);
+	~Dice(){delete [] diceValues;};
 	const int* roll();
 	ostream& print(ostream& out) const;
-	~Dice();
 
 private:
-	int nDice;
-	int* diceValues;
+	int nDice;			// Number of dice in the array
+	int* diceValues;	// Points to dynamically allocated array of dice
 
 };
 
 #endif /* DICE_HPP_ */
 
 inline ostream& operator <<( ostream& out, Dice& d ) {
-	d.print(out);
-	return out;
+	return d.print(out);
 }
