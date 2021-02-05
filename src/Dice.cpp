@@ -1,7 +1,11 @@
-// Marcus Novoa & Brandon Olah
+/*
+ * Created by Marcus Novoa & Brandon Olah
+ * Last Updated: Feb 3, 2021
+ *
+ */
 #include "Dice.hpp"
 
-#define MAX_DICE 50
+#define MAX_DICE 50		// The largest amount of dice that can be made
 
 Dice::Dice(int n) {
 	if(n > 0 && n < MAX_DICE) {
@@ -41,9 +45,4 @@ Dice::print(ostream& out) const {
 	}
 
 	return out;
-}
-
-Dice::~Dice() {
-	delete [] diceValues;
-	diceValues = nullptr;
 }
