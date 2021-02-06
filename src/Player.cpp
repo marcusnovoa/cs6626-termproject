@@ -1,3 +1,8 @@
+/*
+ * Created by Marcus Novoa & Brandon Olah
+ * Last Updated: Feb 5, 2021
+ *
+ */
 #include "Player.hpp"
 
 Player::Player(string name, ColorEnum color) {
@@ -5,14 +10,9 @@ Player::Player(string name, ColorEnum color) {
     playerColor = color;
 }
 
-ColorEnum Player::color() {
-    cout << "Color: " << colors[playerColor];
-    return playerColor;
-}
-
 ostream&
 Player::print(ostream& out) const {
-	if (playerName.find(' ') != std::string::npos) {
+    if (playerName.find(' ') != string::npos) {
         out << "Player name input is invalid.";
         return out;
     } else if (playerColor == error) {
@@ -23,5 +23,5 @@ Player::print(ostream& out) const {
     out << "Player Name:  " << playerName << endl;
     out << "Player Color: " << colors[playerColor] << endl;
 
-	return out;
+    return out;
 }

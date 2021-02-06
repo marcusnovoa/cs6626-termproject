@@ -16,7 +16,7 @@ class Player {
 public:
     Player(string name, ColorEnum color);
     ~Player();
-    ColorEnum color();
+    ColorEnum color(){return playerColor;};
     int score();
     bool wonColumn(int colNum);
     ostream& print(ostream& out) const;
@@ -32,5 +32,5 @@ private:
 #endif /* PLAYER_HPP_ */
 
 inline ostream& operator <<(ostream& out, Player& p) {
-	return p.print(out);
+    return p.print(out);
 }
