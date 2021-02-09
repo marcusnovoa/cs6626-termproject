@@ -1,0 +1,10 @@
+Marcus Novoa & Brandon Olah
+2/03/2021
+
+Dice Tests:
+	0: Test for handling of when no dice are made.
+	4: Test the amount of dice needed for Can't Stop.
+	25: Test a lot of dice for range of values.
+	50: Test the max amount of dice possible.
+	100: Tests for handling of too many dice. Should reduce to 50 dice.
+	-1: Test for handling of invalid amount of dice.

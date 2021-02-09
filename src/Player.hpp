@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 5, 2021
+ * Last Updated: Feb 9, 2021
  *
  */
 #ifndef PLAYER_HPP_
