@@ -1,0 +1,52 @@
+
+--------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CS 6626
+	Tue Feb  9 2021	15:14:57
+----------------------------------------------------------
+Constructing player test objects.
+Printing player names and colors in console.
+Printing player names and colors into output file.
+Player Name:  WhitePlayer
+Player Color: White
+
+Player Name:  OrangePlayer
+Player Color: Orange
+
+Player Name:  YellowPlayer
+Player Color: Yellow
+
+Player Name:  GreenPlayer
+Player Color: Green
+
+Player Name:  BluePlayer
+Player Color: Blue
+
+Player name input is invalid.
+Player color input is invalid.
+
+--------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CS 6626
+	Tue Feb  9 2021	15:16:30
+----------------------------------------------------------
+Constructing player test objects.
+Printing player names and colors in console.
+Printing player names and colors into output file.
+Player Name:  WhitePlayer
+Player Color: White
+
+Player Name:  OrangePlayer
+Player Color: Orange
+
+Player Name:  YellowPlayer
+Player Color: Yellow
+
+Player Name:  GreenPlayer
+Player Color: Green
+
+Player Name:  BluePlayer
+Player Color: Blue
+
+Player name input is invalid.
+Player color input is invalid.
