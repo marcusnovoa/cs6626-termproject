@@ -16,8 +16,8 @@ class Player {
 public:
     Player(string name, ColorEnum color);
     ~Player();
-    ColorEnum color(){return playerColor;};
-    int score();
+    ColorEnum color() const {return playerColor;};
+    int score() const;
     bool wonColumn(int colNum);
     ostream& print(ostream& out) const;
 
