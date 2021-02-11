@@ -1,5 +1,5 @@
 Marcus Novoa & Brandon Olah
-2/03/2021
+2/10/2021
 
 Dice Tests:
 	0: Test for handling of when no dice are made.
@@ -8,3 +8,9 @@ Dice Tests:
 	50: Test the max amount of dice possible.
 	100: Tests for handling of too many dice. Should reduce to 50 dice.
 	-1: Test for handling of invalid amount of dice.
+
+Player Tests:
+	Test one player construction for all colors
+	Test adding a player with an already used color
+	Test adding a player with the error color type
+	Test printing function for all players created
