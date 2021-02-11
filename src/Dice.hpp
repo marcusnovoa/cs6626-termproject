@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 3, 2021
+ * Last Updated: Feb 10, 2021
  *
  */
 #ifndef DICE_HPP_
@@ -20,7 +20,7 @@ public:
 
 private:
 	int nDice;			// Number of dice in the array
-	int* diceValues;	// Points to dynamically allocated array of dice
+	int* diceValues;	// Dynamically allocated array of dice
 
 };
 
