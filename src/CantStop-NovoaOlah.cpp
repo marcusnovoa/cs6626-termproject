@@ -1,10 +1,12 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 3, 2021
+ * Last Updated: Feb 10, 2021
  *
  */
 #include "tools.hpp"
 #include "Dice.hpp"
+#include "enums.hpp"
+#include "Player.hpp"
 
 #define OUTFILE "output.txt"
 
@@ -83,6 +85,42 @@ unitDice(ofstream& ofs) {
 	ofs << *testInvalid << endl;
 }
 
+void
+unitPlayer(ofstream& ofs) {
+	//Test cases for different player names and colors
+	cout << "Constructing player test objects." << endl;
+	ofs << "Constructing player test objects." << endl;
+	Player* test0 = new Player("WhitePlayer", white);
+	Player* test1 = new Player("OrangePlayer", orange);
+	Player* test2 = new Player("YellowPlayer", yellow);
+	Player* test3 = new Player("GreenPlayer", green);
+	Player* test4 = new Player("BluePlayer", blue);
+	Player* testInvalid = new Player("Error Player", white);
+	Player* testInvalid2 = new Player("ErrorPlayer", error);
+
+	//Print player names and colors on separate lines in console
+	cout << "Printing player names and colors in console." << endl;
+	ofs << "Printing player names and colors in console." << endl;
+	cout << *test0 << endl;
+	cout << *test1 << endl;
+	cout << *test2 << endl;
+	cout << *test3 << endl;
+	cout << *test4 << endl;
+	cout << *testInvalid << endl;
+	cout << *testInvalid2 << endl;
+
+	//Print player names and colors on separate lines into output file
+	cout << "Printing player names and colors into output file." << endl;
+	ofs << "Printing player names and colors into output file." << endl;
+	ofs << *test0 << endl;
+	ofs << *test1 << endl;
+	ofs << *test2 << endl;
+	ofs << *test3 << endl;
+	ofs << *test4 << endl;
+	ofs << *testInvalid << endl;
+	ofs << *testInvalid2 << endl;
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -91,7 +129,8 @@ main() {
 
 	banner();
 	fbanner(testOutput);
-	unitDice(testOutput);
+//	unitDice(testOutput);
+	unitPlayer(testOutput);
 	bye();
 
 	testOutput.close();
