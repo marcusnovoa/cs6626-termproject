@@ -1,18 +1,18 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 13, 2021
+ * Last Updated: Feb 14, 2021
  *
  */
 
 #include "enums.hpp"
 
 const char* colors[6] = {
-    "White",
+    "White ",	// To be used for towers, not players
     "Orange",
     "Yellow",
-    "Green",
-    "Blue",
-    "Error"
+    "Green ",
+    "Blue  ",
+    "Error "
 };
 
 const char* columnStates[3] = {

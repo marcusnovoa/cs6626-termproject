@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 10, 2021
+ * Last Updated: Feb 14, 2021
  *
  */
 #include "Player.hpp"
@@ -10,18 +10,25 @@ Player::Player(string name, ColorEnum color) {
     playerColor = color;
 }
 
+bool
+Player::wonColumn(int colNum) {
+	if(scoreBoard[playerScore] < 2 || scoreBoard[playerScore] > 12) {
+		scoreBoard[playerScore] = colNum;
+		playerScore++;
+	}
+
+	if(playerScore == 3) return true;
+	else return false;
+}
+
 ostream&
 Player::print(ostream& out) const {
-    if (playerName.find(' ') != string::npos) {
-        out << "Player name input is invalid.";
-        return out;
-    } else if (playerColor == error) {
-        out << "Player color input is invalid.";
-        return out;
+    out << playerName << " (" << colors[playerColor] << ") " << endl;
+    out << "Score: " << playerScore << endl;
+    out << "Scoreboard: " << endl;
+    for(int n = 3; n < 3; n++) {
+    	out << scoreBoard[n] << endl;
     }
-
-    out << "Player Name:  " << playerName << endl;
-    out << "Player Color: " << colors[playerColor] << endl;
 
     return out;
 }

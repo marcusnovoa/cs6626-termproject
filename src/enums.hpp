@@ -1,13 +1,13 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 13, 2021
+ * Last Updated: Feb 14, 2021
  *
  */
 #ifndef ENUMS_HPP_
 #define ENUMS_HPP_
 
 enum ColorEnum {
-    white,
+    white,		// To be used for towers, not players
     orange,
     yellow,
     green,
