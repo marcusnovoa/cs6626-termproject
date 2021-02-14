@@ -26,7 +26,7 @@ Player::print(ostream& out) const {
     out << playerName << " (" << colors[playerColor] << ") " << endl;
     out << "Score: " << playerScore << endl;
     out << "Scoreboard: " << endl;
-    for(int n = 3; n < 3; n++) {
+    for(int n = 0; n < 3; n++) {
     	out << scoreBoard[n] << endl;
     }
 

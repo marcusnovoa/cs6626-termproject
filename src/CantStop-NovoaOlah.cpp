@@ -122,7 +122,7 @@ unitPlayer(ofstream& ofs) {
 	ofs << *testInvalid2 << endl;
 
 	// Test calls to wonColumn and printing
-	bool[7] testColumnWins = false;
+	bool testColumnWins[7] = {false};
 	testColumnWins[0] = test0->wonColumn(2);
 	testColumnWins[1] = test1->wonColumn(3);
 	testColumnWins[2] = test2->wonColumn(4);
@@ -132,8 +132,8 @@ unitPlayer(ofstream& ofs) {
 	testColumnWins[6] = testInvalid2->wonColumn(8);
 
 	for(int n = 0; n < 7; n++) {
-		cout << "Column " << n  << ": " << testColumnWins[n] << endl;
-		ofs << "Column " << n  << ": " << testColumnWins[n] << endl;
+		cout << "Column " << n << ": " << testColumnWins[n] << endl;
+		ofs << "Column " << n << ": " << testColumnWins[n] << endl;
 	}
 }
 
