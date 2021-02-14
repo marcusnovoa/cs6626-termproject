@@ -1,7 +1,7 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 10, 2021
- *
+ * Last Updated: Feb 13, 2021
+ * 
  */
 #ifndef DICE_HPP_
 #define DICE_HPP_
@@ -24,8 +24,8 @@ private:
 
 };
 
-#endif /* DICE_HPP_ */
-
 inline ostream& operator <<( ostream& out, Dice& d ) {
 	return d.print(out);
 }
+
+#endif /* DICE_HPP_ */

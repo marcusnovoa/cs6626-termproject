@@ -1,16 +1,90 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 10, 2021
+ * Last Updated: Feb 13, 2021
  *
  */
-#include "tools.hpp"
+#include "Column.hpp"
 #include "Dice.hpp"
 #include "enums.hpp"
 #include "Player.hpp"
+#include "tools.hpp"
 
 #define OUTFILE "output.txt"
 
 using namespace std;
+
+void
+unitColumn(ofstream& ofs) {
+	//Create the example players
+	cout << "Constructing player test objects." << endl;
+	ofs << "Constructing player test objects." << endl;
+	Player* p1 = new Player("OrangePlayer", orange);
+	Player* p2 = new Player("YellowPlayer", yellow);
+
+	//Create the columns [2 .. 11]
+	cout << "Constructing column test objects." << endl;
+	ofs << "Constructing column test objects." << endl;
+	Column* col2 = new Column(2);	// 3 squares
+	Column* col7 = new Column(7);	// 13 squares
+	
+	//Place the tower down for P1 in Col 2
+	cout << "Starting tower for test player in column 2." << endl;
+	ofs << "Starting tower for test player in column 2." << endl;
+	col2->startTower(p1);
+
+	//Print column properties on separate lines in console
+	cout << "Printing column properties in console." << endl;
+	ofs << "Printing column properties in console." << endl;
+	Column::printBanner(cout);
+	cout << *col2 << endl;	// T: 1
+	cout << *col7 << endl;
+
+	//Re-print column properties on separate lines into output file
+	cout << "Re-printing column properties into output file." << endl;
+	ofs << "Re-printing column properties into output file." << endl;
+	Column::printBanner(ofs);
+	ofs << *col2 << endl;	// T: 1
+	ofs << *col7 << endl;
+
+	//Move P1 tower up two spaces in Col 2
+	cout << "Testing column movement for player in column 2." << endl;
+	ofs << "Testing column movement for player in column 2." << endl;
+	col2->move();	// State: 0 (Available)
+	col2->move();	// State: 1 (Pending)
+
+	//Print column properties on separate lines in console
+	cout << "Printing column properties in console." << endl;
+	ofs << "Printing column properties in console." << endl;
+	Column::printBanner(cout);
+	cout << *col2 << endl;	// T: 3
+	cout << *col7 << endl;
+
+	//Re-print column properties on separate lines into output file
+	cout << "Re-printing column properties into output file." << endl;
+	ofs << "Re-printing column properties into output file." << endl;
+	Column::printBanner(ofs);
+	ofs << *col2 << endl;	// T: 1
+	ofs << *col7 << endl;
+
+	// Stop P1 turn in Col 2
+	cout << "Stopping test player's turn in column 2." << endl;
+	ofs << "Stopping test player's turn in column 2." << endl;
+	col2->stop(p1);	// State: 2 (Captured)
+
+	//Print column properties on separate lines in console
+	cout << "Printing column properties in console." << endl;
+	ofs << "Printing column properties in console." << endl;
+	Column::printBanner(cout);
+	cout << *col2 << endl;	// T -> O: 3
+	cout << *col7 << endl;
+
+	//Re-print column properties on separate lines into output file
+	cout << "Re-printing column properties into output file." << endl;
+	ofs << "Re-printing column properties into output file." << endl;
+	Column::printBanner(ofs);
+	ofs << *col2 << endl;	// T: 1
+	ofs << *col7 << endl;
+}
 
 void
 unitDice(ofstream& ofs) {
@@ -130,7 +204,8 @@ main() {
 	banner();
 	fbanner(testOutput);
 //	unitDice(testOutput);
-	unitPlayer(testOutput);
+//	unitPlayer(testOutput);
+	unitColumn(testOutput);
 	bye();
 
 	testOutput.close();

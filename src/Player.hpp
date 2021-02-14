@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 10, 2021
+ * Last Updated: Feb 13, 2021
  *
  */
 #ifndef PLAYER_HPP_
@@ -18,7 +18,7 @@ public:
     ~Player();
     ColorEnum color() const {return playerColor;};
     int score() const;
-    bool wonColumn(int colNum);
+    bool wonColumn(int colNum) {return true;};
     ostream& print(ostream& out) const;
 
 private:
@@ -29,8 +29,8 @@ private:
 
 };
 
-#endif /* PLAYER_HPP_ */
-
 inline ostream& operator <<(ostream& out, Player& p) {
     return p.print(out);
 }
+
+#endif /* PLAYER_HPP_ */

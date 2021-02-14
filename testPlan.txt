@@ -14,3 +14,9 @@ Player Tests:
 	Test adding a player with an already used color
 	Test adding a player with the error color type
 	Test printing function for all players created
+
+Column Tests:
+	Test construction for two columns
+	Test starting a tower for a player within a column
+	Test moving the tower for a player within a column
+	Test stopping a player's turn within a column

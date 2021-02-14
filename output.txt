@@ -385,3 +385,44 @@ Player Color: Blue
 
 Player name input is invalid.
 Player color input is invalid.
+
+--------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CS 6626
+	Sat Feb 13 2021	22:01:57
+----------------------------------------------------------
+Constructing player test objects.
+Constructing column test objects.
+Starting tower for test player in column 2.
+Printing column properties in console.
+Re-printing column properties into output file.
+
+==========================================================
+#	S		T	O	Y	G	B
+----------------------------------------------------------
+2	0		1	-	-	-	-
+
+7	0		-	-	-	-	-
+
+Testing column movement for player in column 2.
+Printing column properties in console.
+Re-printing column properties into output file.
+
+==========================================================
+#	S		T	O	Y	G	B
+----------------------------------------------------------
+2	1		3	-	-	-	-
+
+7	0		-	-	-	-	-
+
+Stopping test player's turn in column 2.
+Printing column properties in console.
+Re-printing column properties into output file.
+
+==========================================================
+#	S		T	O	Y	G	B
+----------------------------------------------------------
+2	2		-	3	-	-	-
+
+7	0		-	-	-	-	-
+
