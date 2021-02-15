@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 14, 2021
+ * Last Updated: Feb 15, 2021
  *
  */
 #include "Player.hpp"
@@ -11,12 +11,10 @@ Player::Player(string name, ColorEnum color) : playerName(name),
 bool
 Player::wonColumn(int colNum) {
 	if(scoreBoard[playerScore] < 2 || scoreBoard[playerScore] > 12) {
-		scoreBoard[playerScore] = colNum;
-		playerScore++;
+		scoreBoard[playerScore++] = colNum;
 	}
 
-	if(playerScore == 3) return true;
-	else return false;
+	return playerScore == 3;
 }
 
 ostream&
@@ -25,7 +23,7 @@ Player::print(ostream& out) const {
     out << "Score: " << playerScore << endl;
     out << "Scoreboard: " << endl;
     for(int n = 0; n < 3; n++) {
-    	out << scoreBoard[n] << endl;
+    	out << scoreBoard[n] << " ";
     }
 
     return out;

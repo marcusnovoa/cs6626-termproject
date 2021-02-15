@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 14, 2021
+ * Last Updated: Feb 15, 2021
  *
  */
 #include "Column.hpp"
@@ -135,6 +135,28 @@ unitPlayer(ofstream& ofs) {
 		cout << "Column " << n << ": " << testColumnWins[n] << endl;
 		ofs << "Column " << n << ": " << testColumnWins[n] << endl;
 	}
+
+	//Re-print player names and colors on separate lines in console
+	cout << "Printing player data in console." << endl;
+	ofs << "Printing player data in console." << endl;
+	cout << *test0 << endl;
+	cout << *test1 << endl;
+	cout << *test2 << endl;
+	cout << *test3 << endl;
+	cout << *test4 << endl;
+	cout << *testInvalid << endl;
+	cout << *testInvalid2 << endl;
+
+	//Re-print player names and colors on separate lines into output file
+	cout << "Printing player data into output file." << endl;
+	ofs << "Printing player data into output file." << endl;
+	ofs << *test0 << endl;
+	ofs << *test1 << endl;
+	ofs << *test2 << endl;
+	ofs << *test3 << endl;
+	ofs << *test4 << endl;
+	ofs << *testInvalid << endl;
+	ofs << *testInvalid2 << endl;
 }
 
 void
