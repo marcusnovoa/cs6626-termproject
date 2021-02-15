@@ -17,7 +17,7 @@ public:
     Player(string name, ColorEnum color);
     ~Player(){delete[] scoreBoard;};
     ColorEnum color() const {return playerColor;};
-    int score() const{return playerScore;};
+//  int score() const{return playerScore;};
     bool wonColumn(int colNum);
     ostream& print(ostream& out) const;
 

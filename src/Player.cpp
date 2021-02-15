@@ -5,10 +5,8 @@
  */
 #include "Player.hpp"
 
-Player::Player(string name, ColorEnum color) {
-    playerName = name;
-    playerColor = color;
-}
+Player::Player(string name, ColorEnum color) : playerName(name),
+    playerColor(color){};
 
 bool
 Player::wonColumn(int colNum) {
