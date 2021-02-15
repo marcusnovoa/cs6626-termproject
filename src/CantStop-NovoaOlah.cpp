@@ -137,8 +137,8 @@ unitPlayer(ofstream& ofs) {
 	}
 
 	//Re-print player names and colors on separate lines in console
-	cout << "Printing player data in console." << endl;
-	ofs << "Printing player data in console." << endl;
+	cout << "Re-printing player data in console." << endl;
+	ofs << "Re-printing player data in console." << endl;
 	cout << *test0 << endl;
 	cout << *test1 << endl;
 	cout << *test2 << endl;
@@ -148,8 +148,8 @@ unitPlayer(ofstream& ofs) {
 	cout << *testInvalid2 << endl;
 
 	//Re-print player names and colors on separate lines into output file
-	cout << "Printing player data into output file." << endl;
-	ofs << "Printing player data into output file." << endl;
+	cout << "Re-printing player data into output file." << endl;
+	ofs << "Re-printing player data into output file." << endl;
 	ofs << *test0 << endl;
 	ofs << *test1 << endl;
 	ofs << *test2 << endl;
