@@ -17,9 +17,8 @@ using namespace std;
 class Column {
 public:
     Column(int colNumber);
-    ~Column(){delete [] markers;};
+    ~Column() = default;
     ColumnState getState(){return state;};
-//    ostream& getNumOfSquares(ostream& out) const;
     ostream& print(ostream& out) const;
     static const ostream& printBanner(ostream& out);
     bool startTower(Player* p);
@@ -28,10 +27,10 @@ public:
     void bust() {};
 
 private:
-    static const int numOfSquares[13];  // Number of squares in every column
-    int number;                         // The column number
-    ColumnState state;                  // State: available, pending, captured
-    int* markers;                       // Column contents regarding markers
+    static const int numOfSquares[13];	// Number of squares in every column
+    int number;							// The column number
+    ColumnState state;					// State: available, pending, captured
+    int markers[5] = {0};				// Column contents regarding markers
 
 };
 

@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 14, 2021
+ * Last Updated: Feb 15, 2021
  *
  */
 #ifndef PLAYER_HPP_
@@ -15,7 +15,7 @@ using namespace std;
 class Player {
 public:
     Player(string name, ColorEnum color);
-    ~Player(){delete[] scoreBoard;};
+    ~Player() = default;
     ColorEnum color() const {return playerColor;};
 //  int score() const{return playerScore;};
     bool wonColumn(int colNum);
@@ -25,7 +25,7 @@ private:
     string playerName;
     ColorEnum playerColor;
     int playerScore = 0;
-    int* scoreBoard = new int[3];
+    int scoreBoard[3] = {0};
 
 };
 

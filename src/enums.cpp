@@ -17,8 +17,8 @@ const char* colors[6] = {
 
 const char* columnStates[3] = {
     "Available",
-    "Pending",
-    "Captured"
+    "Pending  ",
+    "Captured "
 };
 
 const char markerColors[5] = {
