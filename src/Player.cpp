@@ -10,10 +10,7 @@ Player::Player(string name, ColorEnum color) : playerName(name),
 
 bool
 Player::wonColumn(int colNum) {
-	if(scoreBoard[playerScore] < 2 || scoreBoard[playerScore] > 12) {
-		scoreBoard[playerScore++] = colNum;
-	}
-
+	scoreBoard[playerScore++] = colNum;
 	return playerScore == 3;
 }
 

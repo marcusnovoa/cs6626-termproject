@@ -91,11 +91,10 @@ unitPlayer(ofstream& ofs) {
 	//Test cases for different player names and colors
 	cout << "Constructing player test objects." << endl;
 	ofs << "Constructing player test objects." << endl;
-	Player* test0 = new Player("WhitePlayer", white);
-	Player* test1 = new Player("OrangePlayer", orange);
-	Player* test2 = new Player("YellowPlayer", yellow);
-	Player* test3 = new Player("GreenPlayer", green);
-	Player* test4 = new Player("BluePlayer", blue);
+	Player* test0 = new Player("OrangePlayer", orange);
+	Player* test1 = new Player("YellowPlayer", yellow);
+	Player* test2 = new Player("GreenPlayer", green);
+	Player* test3 = new Player("BluePlayer", blue);
 	Player* testInvalid = new Player("Error Player", white);
 	Player* testInvalid2 = new Player("ErrorPlayer", error);
 
@@ -106,7 +105,6 @@ unitPlayer(ofstream& ofs) {
 	cout << *test1 << endl;
 	cout << *test2 << endl;
 	cout << *test3 << endl;
-	cout << *test4 << endl;
 	cout << *testInvalid << endl;
 	cout << *testInvalid2 << endl;
 
@@ -117,21 +115,21 @@ unitPlayer(ofstream& ofs) {
 	ofs << *test1 << endl;
 	ofs << *test2 << endl;
 	ofs << *test3 << endl;
-	ofs << *test4 << endl;
 	ofs << *testInvalid << endl;
 	ofs << *testInvalid2 << endl;
 
 	// Test calls to wonColumn and printing
-	bool testColumnWins[7] = {false};
-	testColumnWins[0] = test0->wonColumn(2);
+	cout << "Printing wonColumn results into console." << endl;
+	ofs << "Printing wonColumn results into output file." << endl;
+	bool testColumnWins[6] = {false};
+	testColumnWins[0] = test0->wonColumn(8);
 	testColumnWins[1] = test1->wonColumn(3);
 	testColumnWins[2] = test2->wonColumn(4);
 	testColumnWins[3] = test3->wonColumn(5);
-	testColumnWins[4] = test4->wonColumn(6);
-	testColumnWins[5] = testInvalid->wonColumn(7);
-	testColumnWins[6] = testInvalid2->wonColumn(8);
+	testColumnWins[4] = testInvalid->wonColumn(6);
+	testColumnWins[5] = testInvalid2->wonColumn(7);
 
-	for(int n = 0; n < 7; n++) {
+	for(int n = 0; n < 6; n++) {
 		cout << "Column " << n << ": " << testColumnWins[n] << endl;
 		ofs << "Column " << n << ": " << testColumnWins[n] << endl;
 	}
@@ -143,7 +141,6 @@ unitPlayer(ofstream& ofs) {
 	cout << *test1 << endl;
 	cout << *test2 << endl;
 	cout << *test3 << endl;
-	cout << *test4 << endl;
 	cout << *testInvalid << endl;
 	cout << *testInvalid2 << endl;
 
@@ -154,7 +151,6 @@ unitPlayer(ofstream& ofs) {
 	ofs << *test1 << endl;
 	ofs << *test2 << endl;
 	ofs << *test3 << endl;
-	ofs << *test4 << endl;
 	ofs << *testInvalid << endl;
 	ofs << *testInvalid2 << endl;
 }
@@ -241,8 +237,9 @@ main() {
 	banner();
 	fbanner(testOutput);
 //	unitDice(testOutput);
-//	unitPlayer(testOutput);
+	unitPlayer(testOutput);
 	unitColumn(testOutput);
+
 	bye();
 
 	testOutput.close();
