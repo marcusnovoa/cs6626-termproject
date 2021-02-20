@@ -6,3 +6,15 @@
 
 #include "Game.hpp"
 
+Game::Game() {
+
+}
+
+Game::~Game() {
+
+}
+
+Player
+Game::getNewPlayer() {
+
+}
