@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 15, 2021
+ * Last Updated: Feb 20, 2021
  *
  */
 #include "Column.hpp"
@@ -8,6 +8,7 @@
 #include "enums.hpp"
 #include "Player.hpp"
 #include "tools.hpp"
+#include "Game.hpp"
 
 #define OUTFILE "output.txt"
 
@@ -228,6 +229,25 @@ unitColumn(ofstream& ofs) {
 	ofs << *col7 << endl;
 }
 
+void
+unitGame(ofstream& ofs, Game& game) {
+	// Testing game dice
+	cout << "Printing game-constructed dice to console." << endl;
+
+	cout << "Re-printing game dice to console after rolling." << endl;
+
+
+	// Testing player construction
+
+
+	// Testing column construction
+
+
+	// Testing column capture code
+
+
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -235,10 +255,13 @@ main() {
 	if ( !testOutput.is_open() ) fatal("Error: Output file failed to open.\n");
 
 	banner();
-	fbanner(testOutput);
-//	unitDice(testOutput);
-	unitPlayer(testOutput);
-	unitColumn(testOutput);
+	fbanner( testOutput );
+//	unitDice( testOutput );
+//	unitPlayer( testOutput );
+//	unitColumn( testOutput );
+
+	Game g = Game();
+	unitGame( testOutput, g );
 
 	bye();
 

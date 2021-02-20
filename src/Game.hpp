@@ -12,18 +12,20 @@
 #include "Player.hpp"
 #include "Column.hpp"
 
+using namespace std;
+
 class Game {
 public:
 	Game();
 	~Game();
-	Player getNewPlayer();
+	Player* getNewPlayer();
 
 private:
 	Dice* dice = new Dice(4);
-	Player p1 = Player("Brandon", blue);	// Needs info to be from keyboard
-	Player p2 = Player("Marcus", orange);	// Needs info to be from keyboard
-	Column c1 = Column(5);
-	Column c2 = Column(7);
+	Player* p1 = new Player( "Brandon", blue );	// Needs info from keyboard
+	Player* p2 = new Player( "Marcus", orange );// Needs info from keyboard
+	Column* c1;
+	Column* c2;
 
 };
 
