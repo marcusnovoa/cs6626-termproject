@@ -7,7 +7,8 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
-#include "tools.hpp"
+#define DICE_SET_LENGTH 4	// Constant number of dice in a set
+
 #include "Dice.hpp"
 #include "Player.hpp"
 #include "Column.hpp"
@@ -17,13 +18,14 @@ using namespace std;
 class Game {
 public:
 	Game();
-	~Game();
+	~Game() = default;
 	Player* getNewPlayer();
 
 private:
-	Dice* dice = new Dice(4);
-	Player* p1 = new Player( "Brandon", blue );	// Needs info from keyboard
-	Player* p2 = new Player( "Marcus", orange );// Needs info from keyboard
+	int numOfPlayers = 0;// Used for output
+	Dice* diceSet[DICE_SET_LENGTH];
+	Player* p1;	// Needs input from keyboard
+	Player* p2;	// Needs input from keyboard
 	Column* c1;
 	Column* c2;
 

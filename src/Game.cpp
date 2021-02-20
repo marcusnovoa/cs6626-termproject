@@ -7,25 +7,33 @@
 #include "Game.hpp"
 
 Game::Game() {
+	p1 = getNewPlayer();	// Initialize Player 1
+	p2 = getNewPlayer();	// Initialize Player 2
+	c1 = new Column(2);	// Initialize Column 1
+	c2 = new Column(7);	// Initialize Column 2
 
-}
-
-Game::~Game() {
-
+	for(int n = 0; n < DICE_SET_LENGTH; n++)
+		diceSet[n] = new Dice(6);	// Populate Dice set
 }
 
 Player*
 Game::getNewPlayer() {
 	string pName;
 	int pColor;
-	cout << "Player's Name: ";
+	numOfPlayers++;	// Increase current number of players in-game
+
+	cout << "[Player " << numOfPlayers << "] Enter your name: ";
 	cin >> pName;
-	cout << "\n1. Orange 2. Yellow 3. Green 4. Blue" << endl;
-	cout << "Pick a color by inputting a number: ";
-	while( pColor > 0 && pColor < 5 ) {
+	cout << "\n1. Orange, 2. Yellow, 3. Green, 4. Blue" << endl;
+	cout << "[Player " << numOfPlayers << "] Pick a color by inputting a number: ";
+	cin >> pColor;
+
+	while ( pColor < 1 || pColor > 4 ) {
+		cout << "\nInvalid option. Please try again." << endl;
+		cout << "1. Orange, 2. Yellow, 3. Green, 4. Blue" << endl;
+		cout << "[Player " << numOfPlayers << "] Pick a color by inputting a number: ";
 		cin >> pColor;
-		if(pColor < 1 || pColor > 4) cout << "Invalid selection." << endl;
-		else break;
 	}
+	cout << endl;
 	return new Player(pName, ColorEnum(pColor));
 }

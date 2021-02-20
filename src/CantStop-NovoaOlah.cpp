@@ -119,7 +119,7 @@ unitPlayer(ofstream& ofs) {
 	ofs << *testInvalid << endl;
 	ofs << *testInvalid2 << endl;
 
-	// Test calls to wonColumn and printing
+	//Test calls to wonColumn and printing
 	cout << "Printing wonColumn results into console." << endl;
 	ofs << "Printing wonColumn results into output file." << endl;
 	bool testColumnWins[6] = {false};
@@ -209,7 +209,7 @@ unitColumn(ofstream& ofs) {
 	ofs << *col2 << endl;	// T: 1
 	ofs << *col7 << endl;
 
-	// Stop P1 turn in Col 2
+	//Stop P1 turn in Col 2
 	cout << "Stopping test player's turn in column 2." << endl;
 	ofs << "Stopping test player's turn in column 2." << endl;
 	col2->stop(p1);	// State: 2 (Captured)
@@ -231,20 +231,18 @@ unitColumn(ofstream& ofs) {
 
 void
 unitGame(ofstream& ofs, Game& game) {
-	// Testing game dice
+	//Testing game dice
 	cout << "Printing game-constructed dice to console." << endl;
 
 	cout << "Re-printing game dice to console after rolling." << endl;
 
-
-	// Testing player construction
-
-
-	// Testing column construction
+	//Testing player construction
 
 
-	// Testing column capture code
+	//Testing column construction
 
+
+	//Testing column capture code
 
 }
 
