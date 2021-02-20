@@ -1,27 +1,27 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 10, 2021
+ * Last Updated: Feb 15, 2021
  *
  */
 #include "Player.hpp"
 
-Player::Player(string name, ColorEnum color) {
-    playerName = name;
-    playerColor = color;
+Player::Player(string name, ColorEnum color) : playerName(name),
+    playerColor(color){};
+
+bool
+Player::wonColumn(int colNum) {
+	scoreBoard[playerScore++] = colNum;
+	return playerScore == 3;
 }
 
 ostream&
 Player::print(ostream& out) const {
-    if (playerName.find(' ') != string::npos) {
-        out << "Player name input is invalid.";
-        return out;
-    } else if (playerColor == error) {
-        out << "Player color input is invalid.";
-        return out;
+    out << playerName << " (" << colors[playerColor] << ") " << endl;
+    out << "Score: " << playerScore << endl;
+    out << "Scoreboard: " << endl;
+    for(int n = 0; n < 3; n++) {
+    	out << scoreBoard[n] << " ";
     }
-
-    out << "Player Name:  " << playerName << endl;
-    out << "Player Color: " << colors[playerColor] << endl;
 
     return out;
 }
