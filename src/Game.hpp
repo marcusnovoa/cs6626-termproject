@@ -18,12 +18,12 @@ using namespace std;
 class Game {
 public:
 	Game();
-	~Game() = default;
+	~Game() {delete[] diceSet;};
 	Player* getNewPlayer();
 
 private:
 	int numOfPlayers = 0;// Used for output
-	Dice* diceSet[DICE_SET_LENGTH];
+	Dice* diceSet = new Dice(4);
 	Player* p1;	// Needs input from keyboard
 	Player* p2;	// Needs input from keyboard
 	Column* c1;

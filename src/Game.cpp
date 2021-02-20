@@ -11,9 +11,6 @@ Game::Game() {
 	p2 = getNewPlayer();	// Initialize Player 2
 	c1 = new Column(2);	// Initialize Column 1
 	c2 = new Column(7);	// Initialize Column 2
-
-	for(int n = 0; n < DICE_SET_LENGTH; n++)
-		diceSet[n] = new Dice(6);	// Populate Dice set
 }
 
 Player*
