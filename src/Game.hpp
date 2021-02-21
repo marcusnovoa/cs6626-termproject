@@ -7,8 +7,6 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
-#define DICE_SET_LENGTH 4	// Constant number of dice in a set
-
 #include "Dice.hpp"
 #include "Player.hpp"
 #include "Column.hpp"
@@ -18,8 +16,13 @@ using namespace std;
 class Game {
 public:
 	Game();
-	~Game() {delete[] diceSet;};
+	~Game(){delete diceSet;};
+	Dice* getDiceSet() const {return diceSet;};
 	Player* getNewPlayer();
+	Player* getPlayerOne() const {return p1;};
+	Player* getPlayerTwo() const {return p2;};
+	Column* getColumnOne() const {return c1;};
+	Column* getColumnTwo() const {return c2;};
 
 private:
 	int numOfPlayers = 0;// Used for output

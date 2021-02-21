@@ -231,19 +231,68 @@ unitColumn(ofstream& ofs) {
 
 void
 unitGame(ofstream& ofs, Game& game) {
-	//Testing game dice
-	cout << "Printing game-constructed dice to console." << endl;
+	//Testing game dice construction
+	cout << "Printing game-constructed dice to console.\n";
+	ofs << "Printing game-constructed dice to console.\n";
+	game.getDiceSet()->print(cout) << "\n\n";
+	
+	cout << "Re-printing game-constructed dice into output file.\n";
+	ofs << "Re-printing game-constructed dice into output file.\n";
+	game.getDiceSet()->print(ofs) << "\n\n";
 
-	cout << "Re-printing game dice to console after rolling." << endl;
+	//Testing rolling of game dice
+	cout << "Printing game dice to console after rolling.\n";
+	ofs << "Printing game dice to console after rolling.\n";
+	game.getDiceSet()->roll();
+	game.getDiceSet()->print(cout) << "\n\n";
+
+	cout << "Re-printing game dice into output file after rolling.\n";
+	ofs << "Re-printing game dice into output file after rolling.\n";
+	game.getDiceSet()->print(ofs) << "\n\n";
 
 	//Testing player construction
+	cout << "Printing game-constructed players to console.\n";
+	ofs << "Printing game-constructed players to console.\n";
+	game.getPlayerOne()->print(cout) << "\n";
+	game.getPlayerTwo()->print(cout) << "\n\n";
 
+	cout << "Re-printing game-constructed players into output file.\n";
+	ofs << "Re-printing game-constructed players into output file.\n";
+	game.getPlayerOne()->print(ofs) << "\n";
+	game.getPlayerTwo()->print(ofs) << "\n\n";
 
 	//Testing column construction
+	cout << "Printing game-constructed columns to console.\n";
+	ofs << "Printing game-constructed columns to console.\n";
+	game.getColumnOne()->print(cout) << "\n";
+	game.getColumnTwo()->print(cout) << "\n";
 
+	cout << "Re-printing game-constructed columns into output file.\n";
+	ofs << "Re-printing game-constructed columns into output file.\n";
+	game.getColumnOne()->print(ofs) << "\n";
+	game.getColumnTwo()->print(ofs) << "\n";
 
-	//Testing column capture code
+	//Testing column tower placement
+	cout << "Printing placement of tower in column 7 to console.\n";
+	ofs << "Printing placement of tower in column 7 to console.\n";
+	game.getColumnTwo()->startTower(game.getPlayerOne());
+	game.getColumnTwo()->print(cout) << "\n";
 
+	cout << "Re-printing placement of tower in column 7 into output file.\n";
+	ofs << "Re-printing placement of tower in column 7 into output file.\n";
+	game.getColumnTwo()->print(ofs) << "\n";
+
+	//Testing column state code
+	cout << "Printing column pending state after moves to console.\n";
+	ofs << "Printing column pending state after moves to console.\n";
+	game.getColumnOne()->startTower(game.getPlayerTwo());
+	game.getColumnOne()->move();
+	game.getColumnOne()->move();
+	game.getColumnOne()->print(cout) << "\n";
+
+	cout << "Re-printing column pending state after moves into output file.\n";
+	ofs << "Re-printing column pending state after moves into output file.\n";
+	game.getColumnOne()->print(ofs);
 }
 
 int
