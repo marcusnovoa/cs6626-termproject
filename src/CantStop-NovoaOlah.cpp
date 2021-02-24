@@ -264,27 +264,32 @@ unitGame(ofstream& ofs, Game& game) {
 	//Testing column construction
 	cout << "Printing game-constructed columns to console.\n";
 	ofs << "Printing game-constructed columns to console.\n";
+	Column::printBanner(cout);
 	game.getColumnOne()->print(cout) << "\n";
 	game.getColumnTwo()->print(cout) << "\n";
 
 	cout << "Re-printing game-constructed columns into output file.\n";
 	ofs << "Re-printing game-constructed columns into output file.\n";
+	Column::printBanner(ofs);
 	game.getColumnOne()->print(ofs) << "\n";
 	game.getColumnTwo()->print(ofs) << "\n";
 
 	//Testing column tower placement
 	cout << "Printing placement of tower in column 7 to console.\n";
 	ofs << "Printing placement of tower in column 7 to console.\n";
+	Column::printBanner(cout);
 	game.getColumnTwo()->startTower(game.getPlayerOne());
 	game.getColumnTwo()->print(cout) << "\n";
 
 	cout << "Re-printing placement of tower in column 7 into output file.\n";
 	ofs << "Re-printing placement of tower in column 7 into output file.\n";
+	Column::printBanner(ofs);
 	game.getColumnTwo()->print(ofs) << "\n";
 
 	//Testing column state code
 	cout << "Printing column pending state after moves to console.\n";
 	ofs << "Printing column pending state after moves to console.\n";
+	Column::printBanner(cout);
 	game.getColumnOne()->startTower(game.getPlayerTwo());
 	game.getColumnOne()->move();
 	game.getColumnOne()->move();
@@ -292,6 +297,7 @@ unitGame(ofstream& ofs, Game& game) {
 
 	cout << "Re-printing column pending state after moves into output file.\n";
 	ofs << "Re-printing column pending state after moves into output file.\n";
+	Column::printBanner(ofs);
 	game.getColumnOne()->print(ofs);
 }
 
