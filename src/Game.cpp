@@ -8,9 +8,6 @@
 
 Game::Game() {
 	p1 = getNewPlayer();	// Initialize Player 1
-	p2 = getNewPlayer();	// Initialize Player 2
-	c1 = new Column(2);	// Initialize Column 1
-	c2 = new Column(7);	// Initialize Column 2
 }
 
 Player*

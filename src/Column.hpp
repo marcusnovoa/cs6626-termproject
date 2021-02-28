@@ -25,6 +25,7 @@ public:
     bool move();
     void stop(Player* p);
     void bust() {};
+    int* getMarkers(){return markers;};
 
 private:
     static const int numOfSquares[13];	// Number of squares in every column
