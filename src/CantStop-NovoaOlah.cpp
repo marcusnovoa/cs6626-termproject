@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 15, 2021
+ * Last Updated: Feb 20, 2021
  *
  */
 #include "Column.hpp"
@@ -8,6 +8,7 @@
 #include "enums.hpp"
 #include "Player.hpp"
 #include "tools.hpp"
+#include "Game.hpp"
 
 #define OUTFILE "output.txt"
 
@@ -118,7 +119,7 @@ unitPlayer(ofstream& ofs) {
 	ofs << *testInvalid << endl;
 	ofs << *testInvalid2 << endl;
 
-	// Test calls to wonColumn and printing
+	//Test calls to wonColumn and printing
 	cout << "Printing wonColumn results into console." << endl;
 	ofs << "Printing wonColumn results into output file." << endl;
 	bool testColumnWins[6] = {false};
@@ -208,7 +209,7 @@ unitColumn(ofstream& ofs) {
 	ofs << *col2 << endl;	// T: 1
 	ofs << *col7 << endl;
 
-	// Stop P1 turn in Col 2
+	//Stop P1 turn in Col 2
 	cout << "Stopping test player's turn in column 2." << endl;
 	ofs << "Stopping test player's turn in column 2." << endl;
 	col2->stop(p1);	// State: 2 (Captured)
@@ -228,6 +229,78 @@ unitColumn(ofstream& ofs) {
 	ofs << *col7 << endl;
 }
 
+void
+unitGame(ofstream& ofs, Game& game) {
+	//Testing game dice construction
+	cout << "Printing game-constructed dice to console.\n";
+	ofs << "Printing game-constructed dice to console.\n";
+	game.getDiceSet()->print(cout) << "\n\n";
+	
+	cout << "Re-printing game-constructed dice into output file.\n";
+	ofs << "Re-printing game-constructed dice into output file.\n";
+	game.getDiceSet()->print(ofs) << "\n\n";
+
+	//Testing rolling of game dice
+	cout << "Printing game dice to console after rolling.\n";
+	ofs << "Printing game dice to console after rolling.\n";
+	game.getDiceSet()->roll();
+	game.getDiceSet()->print(cout) << "\n\n";
+
+	cout << "Re-printing game dice into output file after rolling.\n";
+	ofs << "Re-printing game dice into output file after rolling.\n";
+	game.getDiceSet()->print(ofs) << "\n\n";
+
+	//Testing player construction
+	cout << "Printing game-constructed players to console.\n";
+	ofs << "Printing game-constructed players to console.\n";
+	game.getPlayerOne()->print(cout) << "\n";
+	game.getPlayerTwo()->print(cout) << "\n\n";
+
+	cout << "Re-printing game-constructed players into output file.\n";
+	ofs << "Re-printing game-constructed players into output file.\n";
+	game.getPlayerOne()->print(ofs) << "\n";
+	game.getPlayerTwo()->print(ofs) << "\n\n";
+
+	//Testing column construction
+	cout << "Printing game-constructed columns to console.\n";
+	ofs << "Printing game-constructed columns to console.\n";
+	Column::printBanner(cout);
+	game.getColumnOne()->print(cout) << "\n";
+	game.getColumnTwo()->print(cout) << "\n";
+
+	cout << "Re-printing game-constructed columns into output file.\n";
+	ofs << "Re-printing game-constructed columns into output file.\n";
+	Column::printBanner(ofs);
+	game.getColumnOne()->print(ofs) << "\n";
+	game.getColumnTwo()->print(ofs) << "\n";
+
+	//Testing column tower placement
+	cout << "Printing placement of tower in column 7 to console.\n";
+	ofs << "Printing placement of tower in column 7 to console.\n";
+	Column::printBanner(cout);
+	game.getColumnTwo()->startTower(game.getPlayerOne());
+	game.getColumnTwo()->print(cout) << "\n";
+
+	cout << "Re-printing placement of tower in column 7 into output file.\n";
+	ofs << "Re-printing placement of tower in column 7 into output file.\n";
+	Column::printBanner(ofs);
+	game.getColumnTwo()->print(ofs) << "\n";
+
+	//Testing column state code
+	cout << "Printing column pending state after moves to console.\n";
+	ofs << "Printing column pending state after moves to console.\n";
+	Column::printBanner(cout);
+	game.getColumnOne()->startTower(game.getPlayerTwo());
+	game.getColumnOne()->move();
+	game.getColumnOne()->move();
+	game.getColumnOne()->print(cout) << "\n";
+
+	cout << "Re-printing column pending state after moves into output file.\n";
+	ofs << "Re-printing column pending state after moves into output file.\n";
+	Column::printBanner(ofs);
+	game.getColumnOne()->print(ofs);
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -235,10 +308,13 @@ main() {
 	if ( !testOutput.is_open() ) fatal("Error: Output file failed to open.\n");
 
 	banner();
-	fbanner(testOutput);
-//	unitDice(testOutput);
-	unitPlayer(testOutput);
-	unitColumn(testOutput);
+	fbanner( testOutput );
+//	unitDice( testOutput );
+//	unitPlayer( testOutput );
+//	unitColumn( testOutput );
+
+	Game g = Game();
+	unitGame( testOutput, g );
 
 	bye();
 

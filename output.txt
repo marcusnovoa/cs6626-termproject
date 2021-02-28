@@ -578,3 +578,53 @@ Column 3: 0
 Column 4: 0
 Column 5: 0
 Column 6: 0
+
+--------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CS 6626
+	Tue Feb 23 2021	22:55:17
+----------------------------------------------------------
+Printing game-constructed dice to console.
+Re-printing game-constructed dice into output file.
+0 0 0 0 
+
+Printing game dice to console after rolling.
+Re-printing game dice into output file after rolling.
+4 4 2 2 
+
+Printing game-constructed players to console.
+Re-printing game-constructed players into output file.
+Marcus (Orange) 
+Score: 0
+Scoreboard: 
+0 0 0 
+Brandon (Yellow) 
+Score: 0
+Scoreboard: 
+0 0 0 
+
+Printing game-constructed columns to console.
+Re-printing game-constructed columns into output file.
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	-	-	-	-	-
+
+7	Available	-	-	-	-	-
+
+Printing placement of tower in column 7 to console.
+Re-printing placement of tower in column 7 into output file.
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+7	Available	1	-	-	-	-
+
+Printing column pending state after moves to console.
+Re-printing column pending state after moves into output file.
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Pending  	3	-	-	-	-
