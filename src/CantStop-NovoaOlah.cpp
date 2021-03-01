@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 27, 2021
+ * Last Updated: Mar 1, 2021
  *
  */
 #include "Column.hpp"
@@ -162,7 +162,7 @@ unitColumn(ofstream& ofs) {
 	cout << "Constructing player test objects." << endl;
 	ofs << "Constructing player test objects." << endl;
 	Player* p1 = new Player("OrangePlayer", orange);
-	Player* p2 = new Player("YellowPlayer", yellow);
+//	Player* p2 = new Player("YellowPlayer", yellow);
 
 	//Create the columns [2 .. 11]
 	cout << "Constructing column test objects." << endl;
@@ -235,7 +235,7 @@ unitGame(ofstream& ofs, Game& game) {
 	cout << "Printing game-constructed dice to console.\n";
 	ofs << "Printing game-constructed dice to console.\n";
 	game.getDiceSet()->print(cout) << "\n\n";
-	
+
 	cout << "Re-printing game-constructed dice into output file.\n";
 	ofs << "Re-printing game-constructed dice into output file.\n";
 	game.getDiceSet()->print(ofs) << "\n\n";
@@ -368,6 +368,25 @@ unitBoard(ofstream& ofs) {
 	ofs << "Re-printing game board towers in use into output file.\n";
 	Column::printBanner(ofs);
 	g.getBoard()->printTowersInUse(ofs) << "\n";
+
+	//Testing move logic for pending state
+	cout << "Moving game board current player thrice.\n";
+	ofs << "Moving game board current player thrice.\n";
+	g.getBoard()->move(2);
+	g.getBoard()->move(2);
+	g.getBoard()->move(2);
+
+	//When moved 4 times in a 3-space column, tower does not move past end
+
+	cout << "Printing game board columns to console.\n";
+	ofs << "Printing game board columns to console.\n";
+	Column::printBanner(cout);
+	g.getBoard()->print(cout) << "\n";
+
+	cout << "Re-printing game board columns into output file.\n";
+	ofs << "Re-printing game board columns into output file.\n";
+	Column::printBanner(ofs);
+	g.getBoard()->print(ofs) << "\n";
 
 	//Testing game board stop for current player
 	cout << "Stopping game board current player.\n";
