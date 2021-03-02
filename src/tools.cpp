@@ -8,15 +8,25 @@
 // ---------------------------------------------------------------------------
 // I/O Manipulators. ---------------------------------------------------------
 // ---------------------------------------------------------------------------
-// Used to flush the rest of the input line as in cin >> x >> flush;
-// or cin >> flush;
+// Used to discard the remainder of the current input line
 istream&
-flush(istream& is) {
-    ios::iostate save = is.rdstate();
-    is.clear();
-    is.ignore(numeric_limits<streamsize>::max(), '\n');
-    is.setstate( save );
-    return is;
+cleanline( istream& is ) {
+	return is.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+// ---------------------------------------------------------------------------
+// Used to flush the cin buffer as in cin >> x >> flush;  or cin >> flush;
+istream&
+flush( istream& is )
+{
+    return is.seekg( 0, ios::end );
+}
+
+// --------------------------------------------------------------------------
+// Used to reset the formatting style from fixed or scientific back to efault.
+ostream& general( ostream& os ){       // Use: cout <<fixed <<x <<general <<y;
+	os.unsetf( ios::floatfield );
+	return os;
 }
 
 // ----------------------------------------------------------------------------
@@ -27,10 +37,10 @@ void
 fbanner( ostream& fout )
 {   char date[16], time[10];
     when(date, time);
-    fout << "\n--------------------------------------------------------\n"
+    fout << "\n----------------------------------------------------------------\n"
          << "\t" << NAME
          << "\n\t" << CLASS << "\n\t" <<  date << "\t" << time << endl
-         << "----------------------------------------------------------\n";
+         << "----------------------------------------------------------------\n";
 }
 
 void banner() { fbanner( cout ); }
@@ -48,10 +58,24 @@ hold( void )
      cin >> flush;
 }
 
+// --------------------------------------------------------------------------
+// this is a handy function for messages of all sorts.
+//  It formats, prints, and rings the bell.
+//  It accepts a format priored by a variable number of data items to print.
+
+void
+say (const char* format, ...)
+{   va_list vargs;                               // optional arguments
+
+    va_start(vargs, format);
+    vfprintf(stderr, format, vargs);
+    fprintf(stderr, "\n");
+}
+
 // ----------------------------------------------------------------------------
-//  Error handling and error recovery function.
+//  Error handling and error recovery functions.
 //-----------------------------------------------------------------------------
-// This function is for error messages.
+// h is function is for error messages.
 //    It takes a format argument priored by any number of data arguments.
 //    It formats and prints an error message, then exits.
 void
@@ -120,3 +144,46 @@ oclock( char* hour)
     hour[8]  = '\0';                      // Add the string terminator.
     return( hour );
 }
+
+// ----------------------------------------------------------------------------
+//  Menu handling
+// ----------------------------------------------------------------------------
+// Display a menu then read an alphabetic menu choice character.
+char
+menu_c( const char* title, int n, const char* menu[], char* valid )
+{
+    int k;
+    char choice;
+
+    cout << endl << title << endl << endl ;
+    for(;;) {
+    for( k=0; k<n; ++k )
+        cout << "\t " << menu[k] << endl;
+    cout << endl <<" Enter code of desired item: ";
+		cin >> choice >> flush;
+        if ( strchr( valid, choice ) != NULL ) break;
+	    cout << "\n Illegal choice; try again.";
+    }
+    return choice;
+}
+
+// ----------------------------------------------------------------------------
+// Display a menu then read and validate a numeric menu choice.
+int menu( char* title, int n, const char* menu[] )
+{
+    int choice;
+
+    cout << endl << title << endl << endl ;
+    for(;;) {
+        for( int k=0; k<n; ++k )
+            cout << "\t " << (k+1) << ". " << menu[k] << endl;
+
+        cout << endl <<" Enter number of desired item: ";
+        cin >> choice >> flush;
+        if ( 0 < choice && choice <= n) break;
+        cout << "\n Illegal choice or input error; try again.";
+    }
+    return choice;
+}
+
+
