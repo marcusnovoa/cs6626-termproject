@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 15, 2021
+ * Last Updated: Mar 8, 2021
  *
  */
 #ifndef PLAYER_HPP_
@@ -20,6 +20,7 @@ public:
 //  int score() const{return playerScore;};
     bool wonColumn(int colNum);
     ostream& print(ostream& out) const;
+    const string getName() const {return playerName;};
 
 private:
     string playerName;

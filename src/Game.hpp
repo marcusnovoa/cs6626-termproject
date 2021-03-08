@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 27, 2021
+ * Last Updated: Mar 8, 2021
  *
  */
 
@@ -22,12 +22,14 @@ public:
 	Dice* getDiceSet() const {return diceSet;};
 	Player* getNewPlayer();
 	Player* getPlayerOne() const {return p1;};
+	void oneTurn(Player* pp);
 
 private:
 	int numOfPlayers = 0;// Used for output
 	Board* b = new Board();
 	Dice* diceSet = new Dice(4);
 	Player* p1;	// Needs input from keyboard
+	const char* actions[3] = {"Roll", "Stop", "Resign"};
 
 };
 

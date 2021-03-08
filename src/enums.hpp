@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 14, 2021
+ * Last Updated: Mar 8, 2021
  *
  */
 #ifndef ENUMS_HPP_
@@ -19,6 +19,12 @@ enum ColumnState {
     available,
     pending,
     captured
+};
+
+enum playerChoice {
+	roll = 1,
+	stop,
+	resign
 };
 
 extern const char* colors[6];
