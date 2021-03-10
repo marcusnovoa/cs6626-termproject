@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 13, 2021
+ * Last Updated: Mar 8, 2021
  * 
  */
 #ifndef DICE_HPP_
@@ -17,6 +17,7 @@ public:
 	~Dice(){delete [] diceValues;};
 	const int* roll();
 	ostream& print(ostream& out) const;
+	const int getDiceValue(int n) const {return diceValues[n];};
 
 private:
 	int nDice;			// Number of dice in the array

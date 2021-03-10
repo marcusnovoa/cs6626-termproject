@@ -376,7 +376,7 @@ unitBoard(ofstream& ofs) {
 	g.getBoard()->move(2);
 	g.getBoard()->move(2);
 
-	//When moved 4 times in a 3-space column, tower does not move past end
+	// When moved 4 times in a 3-space column, tower does not move past end
 
 	cout << "Printing game board columns to console.\n";
 	ofs << "Printing game board columns to console.\n";
@@ -394,6 +394,12 @@ unitBoard(ofstream& ofs) {
 	g.getBoard()->stop();
 }
 
+void
+unitTurn(ofstream& ofs) {
+	Game g = Game();
+	g.oneTurn(g.getPlayerOne());
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -409,7 +415,9 @@ main() {
 //	Game g = Game();
 //	unitGame( testOutput, g );
 
-	unitBoard( testOutput );
+//	unitBoard( testOutput );
+
+	unitTurn(testOutput);
 
 	bye();
 

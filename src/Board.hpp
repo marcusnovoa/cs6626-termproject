@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 27, 2021
+ * Last Updated: Mar 8, 2021
  *
  */
 #ifndef BOARD_HPP_
@@ -26,6 +26,7 @@ public:
     void stop();
     void bust();
     Player* getCurrentPlayer() const {return currentPlayer;};
+    const int* getTowersInUse() const {return towersInUse;};
 
 private:
     int towerCounter = 0;
