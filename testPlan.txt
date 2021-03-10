@@ -1,13 +1,13 @@
 Marcus Novoa & Brandon Olah
-2/10/2021
+3/1/2021
 
 Dice Tests:
-	0: Test for handling of when no dice are made.
-	4: Test the amount of dice needed for Can't Stop.
-	25: Test a lot of dice for range of values.
-	50: Test the max amount of dice possible.
-	100: Tests for handling of too many dice. Should reduce to 50 dice.
-	-1: Test for handling of invalid amount of dice.
+	0: Test for handling of when no dice are made
+	4: Test the amount of dice needed for Can't Stop
+	25: Test a lot of dice for range of values
+	50: Test the max amount of dice possible
+	100: Tests for handling of too many dice. Should reduce to 50 dice
+	-1: Test for handling of invalid amount of dice
 
 Player Tests:
 	Test one player construction for all colors
@@ -29,3 +29,13 @@ Game Tests:
 	Test tower placement within column 7
 	Test placement and movement of tower in column 2
 	Test column pending state code
+
+Board Tests:
+	Test access of board's columns through printing with banner
+	Test starting a turn with a player
+	Test getting the current player for correctness
+	Test board towers at the start of the turn
+	Test moving a tower up a column
+	Test moving a tower too many times in a column
+	Test the stopping of a turn
+	
