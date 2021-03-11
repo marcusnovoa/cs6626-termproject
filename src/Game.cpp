@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 8, 2021
+ * Last Updated: Mar 11, 2021
  *
  */
 
@@ -72,7 +72,8 @@ Game::oneTurn(Player* pp) {
 				cout << "Second Pair: " << remainingDice << "\n";
 
 				// Attempt tower movement
-				if(!(b->move(firstPair) && b->move(remainingDice))) {
+				// Use | for OR, since || will short-circuit move on right
+				if(!(b->move(firstPair) | b->move(remainingDice))) {
 					cout << "Busted!\n";
 					b->bust();
 					choosing = false;
