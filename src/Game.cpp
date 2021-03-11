@@ -100,10 +100,9 @@ Game::chooseDiceNumber(int* dice, int diceNumber) {
 	cout << "Choose a letter from A to " << nth_letter(DICE_SET_LENGTH)
 		 << " for Dice " << diceNumber << " of your desired pair: ";
 	cin >> inp;
+	inp = toupper(inp);
 	if (inp >= 'A' && inp <= 'Z')
 		inp -= 64;
-	else if (inp >= 'a' && inp <= 'z')
-		inp -= 96;
 	*dice = inp; // Convert letter input to number
 }
 
