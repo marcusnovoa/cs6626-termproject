@@ -96,13 +96,22 @@ Game::oneTurn(Player* pp) {
 
 void
 Game::chooseDiceNumber(int* dice, int diceNumber) {
+	bool choosing = true;
 	char inp;
-	cout << "Choose a letter from A to " << nth_letter(DICE_SET_LENGTH)
-		 << " for Dice " << diceNumber << " of your desired pair: ";
-	cin >> inp;
-	inp = toupper(inp);
-	if (inp >= 'A' && inp <= 'Z')
-		inp -= 64;
+	char max = nth_letter(DICE_SET_LENGTH);
+
+	while (choosing) {
+		cout << "Choose a letter from A to " << max
+			 << " for Dice " << diceNumber << " of your desired pair: ";
+		cin >> inp;
+		inp = toupper(inp);
+		if(inp >= 'A' && inp <= max) {
+			inp -= 64;
+			choosing = false;
+		}
+		else cout << "Invalid input, try again." << endl;
+	}
+
 	*dice = inp; // Convert letter input to number
 }
 
