@@ -397,6 +397,7 @@ unitBoard(ofstream& ofs) {
 void
 unitTurn(ofstream& ofs) {
 	Game g = Game();
+	g.getBoard()->startTurn(g.getPlayerOne()); // Start turn
 	g.oneTurn(g.getPlayerOne());
 }
 

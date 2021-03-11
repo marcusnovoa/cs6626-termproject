@@ -18,7 +18,7 @@ using namespace std;
 class Board {
 public:
     Board();
-    ~Board(){};
+    ~Board() = default;
     ostream& print(ostream& out) const;
     ostream& printTowersInUse(ostream& out) const;
     void startTurn(Player* p);

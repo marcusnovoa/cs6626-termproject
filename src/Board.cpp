@@ -48,12 +48,11 @@ Board::move(int column) {
         backBone[column]->startTower(currentPlayer);
     else
         backBone[column]->move();
-    
-    if(towerCounter < MAX_TOWERS) towerCounter++;   // Increment tower counter
 
     for(int n = 0; n < MAX_TOWERS; n++) // Add column to towers in use
         if(towersInUse[n] == 0) {
             towersInUse[n] = column;
+            if(towerCounter < MAX_TOWERS) towerCounter++;
             break;
         } else continue;
     
