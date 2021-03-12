@@ -65,7 +65,6 @@ Game::oneTurn(Player* pp) {
 				cout << "Second Pair: " << remainingDice << "\n";
 
 				// Attempt tower movement
-				// Use | for OR, since || will short-circuit move on right
 				if(!(b->move(firstPair) | b->move(remainingDice))) {
 					cout << "Busted!\n";
 					b->bust();
@@ -117,17 +116,22 @@ Game::chooseDicePair(int& dicePair) {
 
 void
 Game::turnMenu(int* opt, string title, int n, const char* menu[]) {
+	bool choosing = true;
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
-	cout << "\nEnter desired number: ";
-	cin >> *opt;
+	while(choosing) {
+		cout << "\nEnter desired number: ";
+		cin >> *opt;
+		if(*opt >= 1 && *opt <= n) break;
+		cout << "Invalid input, try again." << endl;
+	}
+
 	cout << "\n";
 }
 
 const char
 Game::nth_letter(int n) {
-    if(n >= 1 && n <= 26)
-    	return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
+    if(n >= 1 && n <= 26) return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
 	return '?';
 }
