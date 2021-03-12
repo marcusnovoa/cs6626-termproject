@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 8, 2021
+ * Last Updated: Mar 11, 2021
  *
  */
 
@@ -32,20 +32,16 @@ Game::getNewPlayer() {
 
 void
 Game::oneTurn(Player* pp) {
-	int firstDice;
-	int secondDice;
 	int firstPair;
 	int remainingDice;	// Set to total, then subtract chosen values
 	int choice;
 	bool choosing = true;
 
 	while(choosing) {
-		turnMenu(&choice, "Pick a function:\n", ACTIONS_LENGTH, actions);
+		turnMenu(&choice, "Pick an Action:\n", ACTIONS_LENGTH, actions);
 		switch(choice) {
 			case roll:
 				// Reset dice on new roll
-				firstDice = 0;
-				secondDice = 0;
 				firstPair = 0;
 				remainingDice = 0;
 
@@ -60,19 +56,17 @@ Game::oneTurn(Player* pp) {
 					cout << nth_letter(n + 1) << ". "
 					<< diceSet->getDiceValue(n) << "\n";
 				cout << "\n";
-				chooseDiceNumber(&firstDice, 1);
-				chooseDiceNumber(&secondDice, 2);
+				chooseDicePair(firstPair);
 
-				// Update the pair values
-				firstPair += diceSet->getDiceValue(firstDice - 1)
-						   + diceSet->getDiceValue(secondDice - 1);
+				// Update the remaining pair
 				remainingDice -= firstPair;
 
 				cout << "\nFirst Pair: " << firstPair << "\n";
 				cout << "Second Pair: " << remainingDice << "\n";
 
 				// Attempt tower movement
-				if(!(b->move(firstPair) && b->move(remainingDice))) {
+				// Use | for OR, since || will short-circuit move on right
+				if(!(b->move(firstPair) | b->move(remainingDice))) {
 					cout << "Busted!\n";
 					b->bust();
 					choosing = false;
@@ -95,16 +89,30 @@ Game::oneTurn(Player* pp) {
 }
 
 void
-Game::chooseDiceNumber(int* dice, int diceNumber) {
-	char inp;
-	cout << "Choose a letter from A to " << nth_letter(DICE_SET_LENGTH)
-		 << " for Dice " << diceNumber << " of your desired pair: ";
-	cin >> inp;
-	if (inp >= 'A' && inp <= 'Z')
-		inp -= 64;
-	else if (inp >= 'a' && inp <= 'z')
-		inp -= 96;
-	*dice = inp; // Convert letter input to number
+Game::chooseDicePair(int& dicePair) {
+	bool choosing = true;
+	string inp;
+	char max = nth_letter(DICE_SET_LENGTH);
+
+	while (choosing) {
+		cout << "Choose two unique letters from A to " << max
+			 << " for Dice pair: ";
+		cin >> inp;
+		for(int n = 0; n < inp.length(); n++) {
+			inp[n] = toupper(inp[n]);
+			if(inp[n] >= 'A' && inp[n] <= max && inp.length() == 2) {
+				inp[n] -= 65;
+			}
+			else {
+				cout << "Invalid input, try again." << endl;
+				choosing = true;
+				break;
+			}
+			choosing = false;
+		}
+	}
+
+	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
 void
@@ -112,6 +120,7 @@ Game::turnMenu(int* opt, string title, int n, const char* menu[]) {
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
+	cout << "\nEnter desired number: ";
 	cin >> *opt;
 	cout << "\n";
 }
