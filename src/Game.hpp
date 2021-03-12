@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 8, 2021
+ * Last Updated: Mar 11, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -26,7 +26,7 @@ public:
 	Player* getNewPlayer();
 	Player* getPlayerOne() const {return p1;};
 	void oneTurn(Player* pp);
-	void chooseDiceNumber(int* dice, int diceNumber);
+	void chooseDicePair(int& dicePair);
 	void turnMenu(int* opt, string title, int n, const char* menu[]);
 
 private:

@@ -32,20 +32,16 @@ Game::getNewPlayer() {
 
 void
 Game::oneTurn(Player* pp) {
-	int firstDice;
-	int secondDice;
 	int firstPair;
 	int remainingDice;	// Set to total, then subtract chosen values
 	int choice;
 	bool choosing = true;
 
 	while(choosing) {
-		turnMenu(&choice, "Pick a function:\n", ACTIONS_LENGTH, actions);
+		turnMenu(&choice, "Pick an Action:\n", ACTIONS_LENGTH, actions);
 		switch(choice) {
 			case roll:
 				// Reset dice on new roll
-				firstDice = 0;
-				secondDice = 0;
 				firstPair = 0;
 				remainingDice = 0;
 
@@ -60,12 +56,9 @@ Game::oneTurn(Player* pp) {
 					cout << nth_letter(n + 1) << ". "
 					<< diceSet->getDiceValue(n) << "\n";
 				cout << "\n";
-				chooseDiceNumber(&firstDice, 1);
-				chooseDiceNumber(&secondDice, 2);
+				chooseDicePair(firstPair);
 
-				// Update the pair values
-				firstPair += diceSet->getDiceValue(firstDice - 1)
-						   + diceSet->getDiceValue(secondDice - 1);
+				// Update the remaining pair
 				remainingDice -= firstPair;
 
 				cout << "\nFirst Pair: " << firstPair << "\n";
@@ -96,24 +89,30 @@ Game::oneTurn(Player* pp) {
 }
 
 void
-Game::chooseDiceNumber(int* dice, int diceNumber) {
+Game::chooseDicePair(int& dicePair) {
 	bool choosing = true;
-	char inp;
+	string inp;
 	char max = nth_letter(DICE_SET_LENGTH);
 
 	while (choosing) {
-		cout << "Choose a letter from A to " << max
-			 << " for Dice " << diceNumber << " of your desired pair: ";
+		cout << "Choose two unique letters from A to " << max
+			 << " for Dice pair: ";
 		cin >> inp;
-		inp = toupper(inp);
-		if(inp >= 'A' && inp <= max) {
-			inp -= 64;
+		for(int n = 0; n < inp.length(); n++) {
+			inp[n] = toupper(inp[n]);
+			if(inp[n] >= 'A' && inp[n] <= max && inp.length() == 2) {
+				inp[n] -= 65;
+			}
+			else {
+				cout << "Invalid input, try again." << endl;
+				choosing = true;
+				break;
+			}
 			choosing = false;
 		}
-		else cout << "Invalid input, try again." << endl;
 	}
 
-	*dice = inp; // Convert letter input to number
+	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
 void
@@ -121,6 +120,7 @@ Game::turnMenu(int* opt, string title, int n, const char* menu[]) {
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
+	cout << "\nEnter desired number: ";
 	cin >> *opt;
 	cout << "\n";
 }
