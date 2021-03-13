@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 11, 2021
+ * Last Updated: Mar 12, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -8,6 +8,7 @@
 
 #define ACTIONS_LENGTH 3
 #define DICE_SET_LENGTH 4
+#define MAX_PLAYERS 4
 
 #include "Board.hpp"
 #include "Dice.hpp"
