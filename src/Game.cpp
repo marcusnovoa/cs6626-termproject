@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 12, 2021
+ * Last Updated: Mar 15, 2021
  *
  */
 
@@ -38,7 +38,7 @@ Game::oneTurn(Player* pp) {
 	bool choosing = true;
 
 	while(choosing) {
-		turnMenu(&choice, "Pick an Action:\n", ACTIONS_LENGTH, actions);
+		choice = turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions);
 		switch(choice) {
 			case roll:
 				// Reset dice on new roll
@@ -114,20 +114,20 @@ Game::chooseDicePair(int& dicePair) {
 	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
-void
-Game::turnMenu(int* opt, string title, int n, const char* menu[]) {
-	bool choosing = true;
+int
+Game::turnMenu(string title, int n, const char* menu[]) {
+	char result = 0;
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
-	while(choosing) {
+	while(true) {
 		cout << "\nEnter desired number: ";
-		cin >> *opt;
-		if(*opt >= 1 && *opt <= n) break;
+		cin >> result;
+		if(result >= '1' && result <= (char)(n + '0')) break;
 		cout << "Invalid input, try again." << endl;
 	}
-
 	cout << "\n";
+	return result - '0';
 }
 
 const char
