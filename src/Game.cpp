@@ -75,9 +75,15 @@ Game::oneTurn(Player* pp) {
 				cout << *b << "\n";
 				break;
 			case stop:
-				cout << pp->getName() << " has stopped their turn." << endl;
+				cout << pp->getName() << " has stopped their turn.\n";
 				b->stop();
-				for (int n = 0; n < 3; n++) pp->wonColumn(b->getTowersInUse()[n]);
+				for (int n = 0; n < 3; n++)
+					pp->wonColumn(b->getTowersInUse()[n]);
+
+				// Print column winnings, if any
+				Column::printBanner(cout);
+				cout << *b << "\n";
+				
 				choosing = false;
 				break;
 			case resign:

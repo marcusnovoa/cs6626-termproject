@@ -38,4 +38,8 @@ Board Tests:
 	Test moving a tower up a column
 	Test moving a tower too many times in a column
 	Test the stopping of a turn
-	
+
+OneTurn Tests:
+	Test access of starting a turn through board
+	Test retrieving the current player after it's been set
+	Test going through one turn for the current player

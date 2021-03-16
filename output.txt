@@ -628,3 +628,303 @@ Re-printing column pending state after moves into output file.
 #	State		T	O	Y	G	B
 ----------------------------------------------------------
 2	Pending  	3	-	-	-	-
+
+----------------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CSCI 4526
+	Mon Mar 15 2021	21:28:32
+----------------------------------------------------------------
+[Player 1] Enter your name: Marcus
+
+1. Orange, 2. Yellow, 3. Green, 4. Blue
+[Player 1] Pick a color by inputting a number: 4
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 5
+B. 1
+C. 2
+D. 1
+
+Choose two unique letters from A to D for Dice pair: bd
+
+First Pair: 2
+Second Pair: 7
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	-	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	1	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 3
+B. 2
+C. 3
+D. 4
+
+Choose two unique letters from A to D for Dice pair: bc
+
+First Pair: 5
+Second Pair: 7
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	1	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 4
+B. 5
+C. 3
+D. 1
+
+Choose two unique letters from A to D for Dice pair: ad
+
+First Pair: 5
+Second Pair: 8
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	2	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 2
+B. 4
+C. 1
+D. 3
+
+Choose two unique letters from A to D for Dice pair: bc
+
+First Pair: 5
+Second Pair: 5
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	4	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 1
+B. 3
+C. 2
+D. 4
+
+Choose two unique letters from A to D for Dice pair: bc
+
+First Pair: 5
+Second Pair: 5
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	6	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 5
+B. 3
+C. 5
+D. 2
+
+Choose two unique letters from A to D for Dice pair: bd
+
+First Pair: 5
+Second Pair: 10
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	7	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 3
+B. 6
+C. 3
+D. 2
+
+Choose two unique letters from A to D for Dice pair: cd
+
+First Pair: 5
+Second Pair: 9
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Available	8	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	2	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 1
+
+The dice values you rolled are:
+A. 6
+B. 1
+C. 1
+D. 4
+
+Choose two unique letters from A to D for Dice pair: cd
+
+First Pair: 5
+Second Pair: 7
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	1	-	-	-	-
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Pending  	9	-	-	-	-
+6	Available	-	-	-	-	-
+7	Available	3	-	-	-	-
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Pick an Action:
+1. Roll
+2. Stop
+3. Resign
+
+Enter desired number: 2
+
+Marcus has stopped their turn.
+
+==========================================================
+#	State		T	O	Y	G	B
+----------------------------------------------------------
+2	Available	-	-	-	-	1
+3	Available	-	-	-	-	-
+4	Available	-	-	-	-	-
+5	Captured 	-	-	-	-	9
+6	Available	-	-	-	-	-
+7	Available	-	-	-	-	3
+8	Available	-	-	-	-	-
+9	Available	-	-	-	-	-
+10	Available	-	-	-	-	-
+11	Available	-	-	-	-	-
+12	Available	-	-	-	-	-
+
+Normal termination.
