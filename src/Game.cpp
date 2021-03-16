@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 11, 2021
+ * Last Updated: Mar 15, 2021
  *
  */
 
@@ -38,7 +38,7 @@ Game::oneTurn(Player* pp) {
 	bool choosing = true;
 
 	while(choosing) {
-		turnMenu(&choice, "Pick an Action:\n", ACTIONS_LENGTH, actions);
+		choice = turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions);
 		switch(choice) {
 			case roll:
 				// Reset dice on new roll
@@ -65,7 +65,6 @@ Game::oneTurn(Player* pp) {
 				cout << "Second Pair: " << remainingDice << "\n";
 
 				// Attempt tower movement
-				// Use | for OR, since || will short-circuit move on right
 				if(!(b->move(firstPair) | b->move(remainingDice))) {
 					cout << "Busted!\n";
 					b->bust();
@@ -115,19 +114,24 @@ Game::chooseDicePair(int& dicePair) {
 	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
-void
-Game::turnMenu(int* opt, string title, int n, const char* menu[]) {
+int
+Game::turnMenu(string title, int n, const char* menu[]) {
+	char result = 0;
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
-	cout << "\nEnter desired number: ";
-	cin >> *opt;
+	while(true) {
+		cout << "\nEnter desired number: ";
+		cin >> result;
+		if(result >= '1' && result <= (char)(n + '0')) break;
+		cout << "Invalid input, try again." << endl;
+	}
 	cout << "\n";
+	return result - '0';
 }
 
 const char
 Game::nth_letter(int n) {
-    if(n >= 1 && n <= 26)
-    	return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
+    if(n >= 1 && n <= 26) return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
 	return '?';
 }

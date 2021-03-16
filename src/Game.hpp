@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 11, 2021
+ * Last Updated: Mar 15, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -8,6 +8,7 @@
 
 #define ACTIONS_LENGTH 3
 #define DICE_SET_LENGTH 4
+#define MAX_PLAYERS 4
 
 #include "Board.hpp"
 #include "Dice.hpp"
@@ -27,7 +28,7 @@ public:
 	Player* getPlayerOne() const {return p1;};
 	void oneTurn(Player* pp);
 	void chooseDicePair(int& dicePair);
-	void turnMenu(int* opt, string title, int n, const char* menu[]);
+	int turnMenu(string title, int n, const char* menu[]);
 
 private:
 	int numOfPlayers = 0; // Used for output
