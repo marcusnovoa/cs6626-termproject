@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 27, 2021
+ * Last Updated: Mar 11, 2021
  *
  */
 #include "Board.hpp"
@@ -48,15 +48,19 @@ Board::move(int column) {
         backBone[column]->startTower(currentPlayer);
     else
         backBone[column]->move();
-    
-    if(towerCounter < MAX_TOWERS) towerCounter++;   // Increment tower counter
 
-    for(int n = 0; n < MAX_TOWERS; n++) // Add column to towers in use
-        if(towersInUse[n] == 0) {
+    // Add column to towers in use
+    for(int n = 0; n < MAX_TOWERS; n++) {
+    	// Check if tower is already in use
+    	if(towerExistsInColumn(column)) {
+            break;
+        }
+    	else if(towersInUse[n] == 0) {
             towersInUse[n] = column;
+            if(towerCounter < MAX_TOWERS) towerCounter++;
             break;
         } else continue;
-    
+    }
     return true;
 }
 
@@ -71,4 +75,13 @@ Board::bust() {
     for(int n = 0; n < MAX_TOWERS; n++)
         if(towersInUse[n] > 0)
             backBone[towersInUse[n]]->bust();
+}
+
+bool
+Board::towerExistsInColumn(int colNum) {
+	for(int n = 0; n < MAX_TOWERS; n++) {
+		if(towersInUse[n] == colNum) return true;
+	}
+
+	return false;
 }

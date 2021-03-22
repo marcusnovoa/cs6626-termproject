@@ -13,7 +13,6 @@ Dice::Dice(int n) {
 	else nDice = n;
 
 	diceValues = new int[nDice];
-
 	srand( time( NULL ) );
 }
 
@@ -22,7 +21,6 @@ Dice::roll() {
 	for(int n = 0; n < nDice; n++) {
 		diceValues[n] = (rand() % 6) + 1;
 	}
-
 	return diceValues;
 }
 
