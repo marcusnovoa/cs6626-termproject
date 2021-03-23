@@ -928,3 +928,91 @@ Marcus has stopped their turn.
 12	Available	-	-	-	-	-
 
 Normal termination.
+
+----------------------------------------------------------------
+	Marcus Novoa & Brandon Olah
+	CSCI 4526
+	Mon Mar 22 2021	22:50:44
+----------------------------------------------------------------
+Constructing player test objects.
+Constructing CList object.
+Running the init function to set current players.
+Moving the current player in the list up two spots.
+Removing the current player.
+
+Printing the new player list.
+Player 1:
+	Player Name:  OrangePlayer
+	Player Color: Orange
+Player 2:
+	Player Name:  YellowPlayer
+	Player Color: Yellow
+Player 3:
+	Player Name:  BluePlayer
+	Player Color: Blue  
+
+Head Pointer:    OrangePlayer
+Prev. Pointer:   YellowPlayer
+Current Pointer: BluePlayer
+Tail Pointer:    BluePlayer
+
+Moving the current player in the list up two spots.
+
+Printing the new current and prev. current players.
+Player 1:
+	Player Name:  OrangePlayer
+	Player Color: Orange
+Player 2:
+	Player Name:  YellowPlayer
+	Player Color: Yellow
+Player 3:
+	Player Name:  BluePlayer
+	Player Color: Blue  
+
+Head Pointer:    OrangePlayer
+Prev. Pointer:   OrangePlayer
+Current Pointer: YellowPlayer
+Tail Pointer:    BluePlayer
+
+Moving the current player in the list up one spot.
+Deleting the tail of the list.
+
+Printing the new player list.
+Player 1:
+	Player Name:  OrangePlayer
+	Player Color: Orange
+Player 2:
+	Player Name:  YellowPlayer
+	Player Color: Yellow
+
+Head Pointer:    OrangePlayer
+Prev. Pointer:   YellowPlayer
+Current Pointer: OrangePlayer
+Tail Pointer:    YellowPlayer
+
+Removing the remaining players.
+
+Printing the new player list.
+The CList is empty...
+
+Re-adding the players after emptying the list.
+Re-running the init function to set current players.
+
+Printing the new player list.
+Player 1:
+	Player Name:  OrangePlayer
+	Player Color: Orange
+Player 2:
+	Player Name:  YellowPlayer
+	Player Color: Yellow
+Player 3:
+	Player Name:  GreenPlayer
+	Player Color: Green 
+Player 4:
+	Player Name:  BluePlayer
+	Player Color: Blue  
+
+Head Pointer:    OrangePlayer
+Prev. Pointer:   BluePlayer
+Current Pointer: OrangePlayer
+Tail Pointer:    BluePlayer

@@ -1,14 +1,15 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 1, 2021
+ * Last Updated: Mar 22, 2021
  *
  */
+#include "CList.hpp"
 #include "Column.hpp"
 #include "Dice.hpp"
 #include "enums.hpp"
+#include "Game.hpp"
 #include "Player.hpp"
 #include "tools.hpp"
-#include "Game.hpp"
 
 #define OUTFILE "output.txt"
 
@@ -401,6 +402,105 @@ unitTurn(ofstream& ofs) {
 	g.oneTurn(g.getPlayerOne());
 }
 
+void
+unitPlayerList(ofstream& ofs) {
+	// Create 4 dummy players with different names and colors
+	cout << "Constructing player test objects.\n\n";
+	ofs << "Constructing player test objects.\n";
+	Player* test0 = new Player("OrangePlayer", orange);
+	Player* test1 = new Player("YellowPlayer", yellow);
+	Player* test2 = new Player("GreenPlayer", green);
+	Player* test3 = new Player("BluePlayer", blue);
+	
+	// Create the CList and add the players
+	cout << "Constructing CList object.\n\n";
+	ofs << "Constructing CList object.\n";
+	CList* cl = new CList();
+	cl->addItem(test0);
+	cl->addItem(test1);
+	cl->addItem(test2);
+	cl->addItem(test3);
+
+	// Run the init function to set current and prev. current players
+	cout << "\nRunning the init function to set current players.\n";
+	ofs << "Running the init function to set current players.\n";
+	cl->init();
+
+	// Move the current player up two spots in the list
+	cout << "\nMoving the current player in the list up two spots.\n\n";
+	ofs << "Moving the current player in the list up two spots.\n";
+	cl->next();
+	cl->next();
+
+	// Remove the current player from the list and print
+	cout << "\nRemoving the current player.\n\n";
+	ofs << "Removing the current player.\n\n";
+	cl->remove();
+
+	// Print the new CList
+	cout << "\nPrinting the new player list.\n";
+	ofs << "Printing the new player list.\n";
+	cout << *cl << "\n";
+	ofs << *cl << "\n";
+
+	// Move the current player up two spots in the list
+	cout << "\nMoving the current player in the list up two spots.\n\n";
+	ofs << "\nMoving the current player in the list up two spots.\n";
+	cl->next();
+	cl->next();
+
+	// Print the new current and prev. current players
+	cout << "\nPrinting the new current and prev. current players.\n";
+	ofs << "\nPrinting the new current and prev. current players.\n";
+	cout << *cl << "\n";
+	ofs << *cl << "\n";
+
+	// Move the current player up one spot and remove the tail
+	cout << "\nMoving the current player in the list up one spot.\n\n";
+	ofs << "\nMoving the current player in the list up one spot.\n";
+	cl->next();
+	cout << "\nDeleting the tail of the list.\n\n";
+	ofs << "Deleting the tail of the list.\n";
+	cl->remove();
+
+	// Print the new CList
+	cout << "\nPrinting the new player list.\n";
+	ofs << "\nPrinting the new player list.\n";
+	cout << *cl << "\n";
+	ofs << *cl << "\n";
+
+	// Remove the remaining players
+	cout << "\nRemoving the remaining players.\n\n";
+	ofs << "\nRemoving the remaining players.\n";
+	cl->remove();
+	cl->remove();
+
+	// Print the new CList
+	cout << "\nPrinting the new player list.\n";
+	ofs << "\nPrinting the new player list.\n";
+	cout << *cl << "\n";
+	ofs << *cl << "\n";
+
+	// Re-add the players after emptying the list
+	cout << "Re-adding the players after emptying the list.\n\n";
+	ofs << "Re-adding the players after emptying the list.";
+	cl->addItem(test0);
+	cl->addItem(test1);
+	cl->addItem(test2);
+	cl->addItem(test3);
+
+	// Re-run the init function to set current and prev. current players
+	cout << "\nRe-running the init function to set current players.\n";
+	ofs << "\nRe-running the init function to set current players.\n";
+	cl->init();
+
+	// Print the new CList
+	cout << "\nPrinting the new player list.\n";
+	ofs << "\nPrinting the new player list.\n";
+	cout << *cl << "\n";
+	ofs << *cl << "\n";
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -417,8 +517,9 @@ main() {
 //	unitGame( testOutput, g );
 
 //	unitBoard( testOutput );
+//	unitTurn(testOutput);
 
-	unitTurn(testOutput);
+	unitPlayerList(testOutput);
 
 	bye();
 
