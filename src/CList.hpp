@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 22, 2021
+ * Last Updated: Mar 25, 2021
  * 
  */
 #ifndef CLIST_HPP_
@@ -20,7 +20,7 @@ template <class T> class CList;
 template <class T> class Cell { // Dependent class. Points to another Cell.
     friend class CList<T>;
     private:
-        T* data;
+        T data;
         Cell<T>* next;
 
     Cell(T in, Cell* nx){data = in;next = nx;}
@@ -52,7 +52,7 @@ public:
     ostream& print(ostream& out) const;
     void addItem(T in);
     void init(){curr = head; prevCurr = tail;}
-    T* next();
+    T next();
     void remove();
 };
 
@@ -82,7 +82,7 @@ CList<T>::addItem(T in) {
 }
 
 template <class T>
-T*
+T
 CList<T>::next() {
     if (curr->next != curr) {
         if (curr == prevCurr) {
