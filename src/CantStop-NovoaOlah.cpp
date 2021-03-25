@@ -411,11 +411,11 @@ unitPlayerList(ofstream& ofs) {
 	Player* test1 = new Player("YellowPlayer", yellow);
 	Player* test2 = new Player("GreenPlayer", green);
 	Player* test3 = new Player("BluePlayer", blue);
-	
+
 	// Create the CList and add the players
 	cout << "Constructing CList object.\n\n";
 	ofs << "Constructing CList object.\n";
-	CList* cl = new CList();
+	CList<Player*>* cl = new CList<Player*>();
 	cl->addItem(test0);
 	cl->addItem(test1);
 	cl->addItem(test2);
