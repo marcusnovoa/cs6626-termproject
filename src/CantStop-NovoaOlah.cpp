@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 22, 2021
+ * Last Updated: Mar 25, 2021
  *
  */
 #include "CList.hpp"
@@ -481,13 +481,21 @@ unitPlayerList(ofstream& ofs) {
 	cout << *cl << "\n";
 	ofs << *cl << "\n";
 
+	// Create 4 more dummy players with different names and colors
+	cout << "Constructing player test objects.\n\n";
+	ofs << "Constructing player test objects.\n";
+	Player* test4 = new Player("OrangePlayer", orange);
+	Player* test5 = new Player("YellowPlayer", yellow);
+	Player* test6 = new Player("GreenPlayer", green);
+	Player* test7 = new Player("BluePlayer", blue);
+
 	// Re-add the players after emptying the list
 	cout << "Re-adding the players after emptying the list.\n\n";
 	ofs << "Re-adding the players after emptying the list.";
-	cl->addItem(test0);
-	cl->addItem(test1);
-	cl->addItem(test2);
-	cl->addItem(test3);
+	cl->addItem(test4);
+	cl->addItem(test5);
+	cl->addItem(test6);
+	cl->addItem(test7);
 
 	// Re-run the init function to set current and prev. current players
 	cout << "\nRe-running the init function to set current players.\n";
