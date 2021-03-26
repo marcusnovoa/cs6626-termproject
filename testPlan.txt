@@ -54,7 +54,7 @@ PlayerList Tests:
 	Test moving the current player selection up two spots
 	Test printing the new current and previous-to-current Players
 	Test moving the current player selection up one spot to the tail
-	Test deleting the tail Player of the list (Blue)
+	Test removing the tail Player of the list (Blue)
 	Test printing the new Player list (Orange, Yellow)
 	Test removing the remaining Players
 	Test printing the new Player list (CList is empty...)
