@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 26, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 
@@ -116,8 +116,8 @@ Game::chooseDicePair(int& dicePair) {
 	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
-int
-Game::turnMenu(string title, int n, const char* menu[]) {
+const int
+Game::turnMenu(string title, int n, const char* menu[]) const {
 	char result = 0;
 	cout << title;
 	for (int j = 0; j < n; j++)

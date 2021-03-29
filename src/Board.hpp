@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 26, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #ifndef BOARD_HPP_
@@ -21,7 +21,7 @@ public:
     ~Board() {for(int n = 0; n < NUM_OF_COLUMNS; ++n) delete backBone[n];};
     ostream& print(ostream& out) const;
     void startTurn(Player* p);
-    bool move(int column);
+    const bool move(int column);
     void stop();
     void bust();
     bool towerExistsInColumn(int colNum);

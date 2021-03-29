@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 26, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #include "Board.hpp"
@@ -23,7 +23,7 @@ Board::startTurn(Player* p) {
     towerCounter = 0;
 }
 
-bool
+const bool
 Board::move(int column) {
     if(backBone[column]->getState() == pending ||
        backBone[column]->getState() == captured ||

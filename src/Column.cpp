@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 26, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #include "Column.hpp"
@@ -32,7 +32,7 @@ Column::print(ostream& out) const {
 	return out;
 };
 
-bool
+const bool
 Column::startTower(Player* p) {
 	if ( markers[p->color()] <= 0 ) { // If player has no marker in the column
 	    markers[0] = 1;             // Place a tower at position 1
@@ -46,7 +46,7 @@ Column::startTower(Player* p) {
 	return false;
 };
 
-bool
+const bool
 Column::move() {
 	if ( markers[0] < numOfSquares[number] ) markers[0]++;
 	else return false;
