@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 27, 2021
+ * Last Updated: Mar 26, 2021
  *
  */
 #ifndef COLUMN_HPP_
@@ -9,6 +9,7 @@
 #include "enums.hpp"
 #include <iostream>
 #include "Player.hpp"
+#include <iomanip>
 
 #define MARKER_COLORS_LEN 5 // Number of available marker colors
 
@@ -20,12 +21,10 @@ public:
     ~Column() = default;
     ColumnState getState(){return state;};
     ostream& print(ostream& out) const;
-    static const ostream& printBanner(ostream& out);
     bool startTower(Player* p);
     bool move();
-    void stop(Player* p);
+    void stop(Player* pp);
     void bust() {};
-    int* getMarkers(){return markers;};
 
 private:
     static const int numOfSquares[13];	// Number of squares in every column
