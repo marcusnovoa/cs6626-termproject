@@ -27,26 +27,16 @@ const bool
 Board::move(int column) {
     if(backBone[column]->getState() == pending ||
        backBone[column]->getState() == captured ||
-       (!towerExistsInColumn(column) && towerCounter >= 3))
+       (!backBone[column]->hasTower() && towerCounter >= 3))
             return false;
 
-    if(!towerExistsInColumn(column))  // Start or move tower in column
+    if(!backBone[column]->hasTower()) { // Start or move tower in column
         backBone[column]->startTower(currentPlayer);
+    	towersInUse[towerCounter++] = column;
+    }
     else
         backBone[column]->move();
 
-    // Add column to towers in use
-    for(int n = 0; n < 3; n++) {
-    	// Check if tower is already in use
-    	if(towerExistsInColumn(column)) {
-            break;
-        }
-    	else if(towersInUse[n] == 0) {
-            towersInUse[n] = column;
-            if(towerCounter < 3) towerCounter++;
-            break;
-        } else continue;
-    }
     return true;
 }
 
@@ -61,19 +51,6 @@ Board::bust() {
     for(int n = 0; n < 3; n++)
         if(towersInUse[n] > 0)
             backBone[towersInUse[n]]->bust();
-}
-
-/*
- * Might be able to change calls to this function
- * with if (backBone[colNum]->markers[0] != 0)
- */
-bool
-Board::towerExistsInColumn(int colNum) {
-	for(int n = 0; n < towerCounter; n++) {
-		if(towersInUse[n] == colNum) return true;
-	}
-
-	return false;
 }
 
 void

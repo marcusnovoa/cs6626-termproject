@@ -24,7 +24,6 @@ public:
     const bool move(int column);
     void stop();
     void bust();
-    bool towerExistsInColumn(int colNum);
     void unitBoard(ofstream& ofs);
 
 private:

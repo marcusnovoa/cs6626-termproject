@@ -23,6 +23,7 @@ public:
     ostream& print(ostream& out) const;
     const bool startTower(Player* p);
     const bool move();
+    const bool hasTower() const {return markers[0] != 0;};
     void stop(Player* pp);
     void bust() {};
 
