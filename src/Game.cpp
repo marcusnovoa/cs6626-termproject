@@ -99,9 +99,10 @@ Game::chooseDicePair(int& dicePair) {
 		cout << "Choose two unique letters from A to " << max
 			 << " for Dice pair: ";
 		cin >> inp;
-		for(int n = 0; n < inp.length(); n++) {
-			inp[n] = toupper(inp[n]);
-			if(inp[n] >= 'A' && inp[n] <= max && inp.length() == 2) {
+		for(int k = 0; k < inp.length(); ++k) inp[k] = toupper(inp[k]);
+		for(int n = 0; n < inp.length(); ++n) {
+			if(inp[n] >= 'A' && inp[n] <= max
+			   && inp.length() == 2 && inp[0] != inp[1]) {
 				inp[n] -= 'A';
 			}
 			else {
