@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 15, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 
@@ -61,28 +61,24 @@ Game::oneTurn(Player* pp) {
 				// Update the remaining pair
 				remainingDice -= firstPair;
 
-				cout << "\nFirst Pair: " << firstPair << "\n";
-				cout << "Second Pair: " << remainingDice << "\n";
+				cout << "\nFirst Pair:  " << firstPair << "\n";
+				cout << "Second Pair: " << remainingDice << "\n\n";
 
 				// Attempt tower movement
-				if(!(b->move(firstPair) | b->move(remainingDice))) {
+				if(!(b.move(firstPair) | b.move(remainingDice))) {
 					cout << "Busted!\n";
-					b->bust();
+					b.bust();
 					choosing = false;
 					break;
 				}
-				Column::printBanner(cout);
-				cout << *b << "\n";
+				cout << b << "\n";
 				break;
 			case stop:
 				cout << pp->getName() << " has stopped their turn.\n";
-				b->stop();
-				for (int n = 0; n < 3; n++)
-					pp->wonColumn(b->getTowersInUse()[n]);
+				b.stop();
 
 				// Print column winnings, if any
-				Column::printBanner(cout);
-				cout << *b << "\n";
+				cout << b << "\n";
 				
 				choosing = false;
 				break;
@@ -106,7 +102,7 @@ Game::chooseDicePair(int& dicePair) {
 		for(int n = 0; n < inp.length(); n++) {
 			inp[n] = toupper(inp[n]);
 			if(inp[n] >= 'A' && inp[n] <= max && inp.length() == 2) {
-				inp[n] -= 65;
+				inp[n] -= 'A';
 			}
 			else {
 				cout << "Invalid input, try again." << endl;
@@ -120,8 +116,8 @@ Game::chooseDicePair(int& dicePair) {
 	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
 }
 
-int
-Game::turnMenu(string title, int n, const char* menu[]) {
+const int
+Game::turnMenu(string title, int n, const char* menu[]) const {
 	char result = 0;
 	cout << title;
 	for (int j = 0; j < n; j++)
@@ -140,4 +136,10 @@ const char
 Game::nth_letter(int n) {
     if(n >= 1 && n <= 26) return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
 	return '?';
+}
+
+void
+Game::unitTurn(ofstream& ofs) {
+	b.startTurn(p1); // Start turn
+	oneTurn(p1);
 }

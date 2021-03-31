@@ -1,37 +1,34 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 11, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #ifndef BOARD_HPP_
 #define BOARD_HPP_
 
-#define MAX_TOWERS 3
 #define NUM_OF_COLUMNS 13
 
 #include "enums.hpp"
 #include "Column.hpp"
 #include "Player.hpp"
+#include "tools.hpp"
 
 using namespace std;
 
 class Board {
 public:
     Board();
-    ~Board() = default;
+    ~Board() {for(int n = 0; n < NUM_OF_COLUMNS; ++n) delete backBone[n];};
     ostream& print(ostream& out) const;
-    ostream& printTowersInUse(ostream& out) const;
     void startTurn(Player* p);
-    bool move(int column);
+    const bool move(int column);
     void stop();
     void bust();
-    Player* getCurrentPlayer() const {return currentPlayer;};
-    const int* getTowersInUse() const {return towersInUse;};
-    bool towerExistsInColumn(int colNum);
+    void unitBoard(ofstream& ofs);
 
 private:
-    int towerCounter = 0;
-    int towersInUse[MAX_TOWERS] = {0};
+    int towerCounter;
+    int towersInUse[3] = {0};
     Column* backBone[NUM_OF_COLUMNS];
     Player* currentPlayer;
 

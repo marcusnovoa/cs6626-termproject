@@ -932,7 +932,7 @@ Normal termination.
 ----------------------------------------------------------------
 	Marcus Novoa & Brandon Olah
 	CSCI 4526
-	Mon Mar 22 2021	22:50:44
+	Wed Mar 31 2021	14:26:17
 ----------------------------------------------------------------
 Constructing player test objects.
 Constructing CList object.
