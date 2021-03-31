@@ -44,7 +44,7 @@ OneTurn Tests:
 	Test retrieving the current player after it's been set
 	Test going through one turn for the current player
 
-PlayerList Tests:
+PlayerListTemp Tests:
 	Test construction of CList object
 	Test adding four Player objects to the CList
 	Test running of init function
