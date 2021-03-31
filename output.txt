@@ -932,7 +932,7 @@ Normal termination.
 ----------------------------------------------------------------
 	Marcus Novoa & Brandon Olah
 	CSCI 4526
-	Wed Mar 31 2021	14:26:17
+	Wed Mar 31 2021	14:43:21
 ----------------------------------------------------------------
 Constructing player test objects.
 Constructing CList object.
@@ -995,6 +995,7 @@ Removing the remaining players.
 Printing the new player list.
 The CList is empty...
 
+Constructing player test objects.
 Re-adding the players after emptying the list.
 Re-running the init function to set current players.
 
