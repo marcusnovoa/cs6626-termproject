@@ -32,3 +32,25 @@ Dice::print(ostream& out) const {
 	}
 	return out;
 }
+
+CantStopDice::CantStopDice() {
+
+}
+
+CantStopDice::~CantStopDice() {
+
+}
+
+const int*
+CantStopDice::roll() {
+
+}
+
+FakeDice::FakeDice() {
+
+}
+
+const int*
+FakeDice::roll() {
+
+}
