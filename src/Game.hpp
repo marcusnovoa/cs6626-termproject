@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 15, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -15,24 +15,25 @@
 #include "Player.hpp"
 #include "Column.hpp"
 #include <string>
+#include "CList.hpp"
 
 using namespace std;
 
 class Game {
 public:
 	Game();
-	~Game(){delete b; delete diceSet;};
-	Board* getBoard() const {return b;};
+	~Game(){delete diceSet;};
 	Dice* getDiceSet() const {return diceSet;};
 	Player* getNewPlayer();
 	Player* getPlayerOne() const {return p1;};
 	void oneTurn(Player* pp);
 	void chooseDicePair(int& dicePair);
-	int turnMenu(string title, int n, const char* menu[]);
+	const int turnMenu(string title, int n, const char* menu[]) const;
+	void unitTurn(ofstream& ofs);
 
 private:
 	int numOfPlayers = 0; // Used for output
-	Board* b = new Board();
+	Board b = Board();
 	Dice* diceSet = new Dice(DICE_SET_LENGTH);
 	Player* p1;	// Needs input from keyboard
 	const char* actions[3] = {"Roll", "Stop", "Resign"};

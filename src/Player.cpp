@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Feb 15, 2021
+ * Last Updated: Mar 29, 2021
  *
  */
 #include "Player.hpp"
@@ -8,7 +8,7 @@
 Player::Player(string name, ColorEnum color) : playerName(name),
     playerColor(color){};
 
-bool
+const bool
 Player::wonColumn(int colNum) {
 	scoreBoard[playerScore++] = colNum;
 	return playerScore == 3;
