@@ -16,12 +16,12 @@ using namespace std;
 class Dice {
 public:
 	Dice(int n);
-	virtual ~Dice();
+	virtual ~Dice() {delete [] diceValues;};
 	virtual const int* roll();
 	ostream& print(ostream& out) const;
 	const int getDiceValue(int n) const {return diceValues[n];};
 
-private:
+protected:
 	int nDice;			// Number of dice in the array
 	int* diceValues;	// Dynamically allocated array of dice
 
@@ -33,9 +33,11 @@ inline ostream& operator <<( ostream& out, Dice& d ) {
 
 class CantStopDice : public Dice {
 public:
-	CantStopDice();
-	~CantStopDice();
+	CantStopDice() : Dice(Dice(4)) {};
+	~CantStopDice() {delete[] diceValues;};
 	const int* roll();
+	const int choosePair() const;
+
 private:
 	int pairValues[2] = {0,0};
 };
