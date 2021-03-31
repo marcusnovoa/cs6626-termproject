@@ -90,11 +90,10 @@ CantStopDice::choosePair() const {
 	return diceValues[inp[0]] + diceValues[inp[1]];
 }
 
-FakeDice::FakeDice() {
-
-}
-
 const int*
 FakeDice::roll() {
+	if(!diceFile.eof()) {
 
+	}
+	else fatal("Reached end of fakeDice file");
 }

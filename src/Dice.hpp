@@ -44,7 +44,7 @@ private:
 
 class FakeDice : public CantStopDice {
 public:
-	FakeDice();
+	FakeDice() {diceFile.open(INFILE);};
 	const int* roll();
 
 private:
