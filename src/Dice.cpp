@@ -90,10 +90,42 @@ CantStopDice::choosePair() const {
 	return diceValues[inp[0]] + diceValues[inp[1]];
 }
 
-// const int*
-// FakeDice::roll() {
-// 	if(!diceFile.eof()) {
+const int*
+FakeDice::roll() {
+	const int size = 4;
+	diceValues = new int[size];
+	int count = 0; 
+	int n;
 
-// 	}
-// 	else fatal("Reached end of fakeDice file");
-// }
+	//Populate diceValues with file values
+	while (count < size && diceFile >> n) 
+		diceValues[count++] = n;
+
+	//Get total
+	int pairPriority;
+	int diceTotal = 0;
+	for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
+
+	//Display dice and choose pair
+	cout << "The dice values you rolled are:\n";
+	char opt = 'A';
+	for(int n = 0; n < nDice; n++)
+		cout << opt++ << ". " << diceValues[n] << "\n";
+	cout << "\n";
+	pairValues[0] = choosePair();
+	pairValues[1] = diceTotal - pairValues[0];
+
+	//Display pairs chosen and give priority to one
+	cout << "\nPair 1: " << pairValues[0] << "\n";
+	cout << "Pair 2: " << pairValues[1] << "\n\n";
+
+	while(true) {
+		cout << "Choose the number of the pair to use first (1 or 2): ";
+		cin >> pairPriority;
+		if(pairPriority >= 1 && pairPriority <= 2) break;
+		cout << "Invalid input, try again." << endl;
+	}
+
+	if(pairPriority == 2) swap(pairValues[0], pairValues[1]);
+	return pairValues;
+}

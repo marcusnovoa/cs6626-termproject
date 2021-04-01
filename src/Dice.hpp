@@ -9,7 +9,7 @@
 #include "tools.hpp"
 #include <iostream>
 
-#define INFILE "fakeDiceInput.txt"
+#define INFILE "./src/fakeDiceInput.txt"
 
 using namespace std;
 
@@ -39,8 +39,9 @@ public:
 	const int choosePair() const;
 	const int* getPairValues() {return pairValues;};
 
-private:
+protected:
 	int pairValues[2] = {0,0};
+
 };
 
 class FakeDice : public CantStopDice {

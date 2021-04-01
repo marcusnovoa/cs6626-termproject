@@ -420,6 +420,27 @@ unitCantStopDice(ofstream& ofs) {
 	}
 }
 
+void
+unitFakeDice(ofstream& ofs) {
+	//Test case for Fake Dice test set
+	cout << "Constructing Fake Dice test set." << "\n";
+	ofs << "Constructing Fake Dice test set." << "\n";
+	FakeDice* test0 = new FakeDice();
+
+	//Roll Fake Dice test set
+	cout << "Rolling Fake Dice test set." << "\n";
+	ofs << "Rolling Fake Dice test set." << "\n";
+	test0->roll();
+
+	//Print Fake Dice test pair values
+	cout << "\nPrinting Fake Dice test pair values in console." << "\n";
+	ofs << "\nPrinting Fake Dice test pair values in console." << "\n";
+	for (int k = 0; k < 2; ++k) {
+		cout << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+		ofs << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+	}
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -439,7 +460,8 @@ main() {
 //	g.unitTurn( testOutput );
 
 //	unitPlayerList( testOutput );
-	unitCantStopDice( testOutput );
+//	unitCantStopDice( testOutput );
+	unitFakeDice( testOutput );
 
 	bye();
 
