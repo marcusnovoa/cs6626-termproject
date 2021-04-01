@@ -37,6 +37,7 @@ public:
 	~CantStopDice() {delete[] diceValues;};
 	const int* roll();
 	const int choosePair() const;
+	const int* getPairValues() {return pairValues;};
 
 private:
 	int pairValues[2] = {0,0};
