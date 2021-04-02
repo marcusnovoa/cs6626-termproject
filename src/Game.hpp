@@ -34,7 +34,7 @@ public:
 private:
 	int numOfPlayers = 0; // Used for output
 	Board b = Board();
-	Dice* diceSet = new Dice(DICE_SET_LENGTH);
+	Dice* diceSet = new FakeDice();
 	Player* p1;	// Needs input from keyboard
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
 	static const char nth_letter(int n);

@@ -399,6 +399,48 @@ unitPlayerList(ofstream& ofs) {
 	ofs << *cl << "\n";
 }
 
+void
+unitCantStopDice(ofstream& ofs) {
+	//Test case for CantStop Dice test set
+	cout << "Constructing CantStop Dice test set." << "\n";
+	ofs << "Constructing CantStop Dice test set." << "\n";
+	CantStopDice* test0 = new CantStopDice();
+
+	//Roll CantStop Dice test set
+	cout << "Rolling CantStop Dice test set." << "\n";
+	ofs << "Rolling CantStop Dice test set." << "\n";
+	test0->roll();
+
+	//Print CantStop Dice test pair values
+	cout << "\nPrinting CantStop Dice test pair values in console." << "\n";
+	ofs << "\nPrinting CantStop Dice test pair values in console." << "\n";
+	for (int k = 0; k < 2; ++k) {
+		cout << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+		ofs << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+	}
+}
+
+void
+unitFakeDice(ofstream& ofs) {
+	//Test case for Fake Dice test set
+	cout << "Constructing Fake Dice test set." << "\n";
+	ofs << "Constructing Fake Dice test set." << "\n";
+	FakeDice* test0 = new FakeDice();
+
+	//Roll Fake Dice test set
+	cout << "Rolling Fake Dice test set." << "\n";
+	ofs << "Rolling Fake Dice test set." << "\n";
+	test0->roll();
+
+	//Print Fake Dice test pair values
+	cout << "\nPrinting Fake Dice test pair values in console." << "\n";
+	ofs << "\nPrinting Fake Dice test pair values in console." << "\n";
+	for (int k = 0; k < 2; ++k) {
+		cout << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+		ofs << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+	}
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -410,14 +452,13 @@ main() {
 //	unitDice( testOutput );
 //	unitPlayer( testOutput );
 //	unitColumn( testOutput );
+//	unitPlayerList( testOutput );
+//	unitCantStopDice( testOutput );
 
 	Game g = Game();
 //	unitGame( testOutput, g );
-
 //	g.b.unitBoard( testOutput );
-	g.unitTurn(testOutput);
-
-//	unitPlayerList(testOutput);
+	g.unitTurn( testOutput );
 
 	bye();
 
