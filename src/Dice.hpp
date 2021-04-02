@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 31, 2021
+ * Last Updated: Apr 2, 2021
  * 
  */
 #ifndef DICE_HPP_
@@ -20,10 +20,12 @@ public:
 	virtual const int* roll();
 	ostream& print(ostream& out) const;
 	const int getDiceValue(int n) const {return diceValues[n];};
+	const int* getPairValues() const {return pairValues;};
 
 protected:
 	int nDice;			// Number of dice in the array
 	int* diceValues;	// Dynamically allocated array of dice
+	int pairValues[2] = {0,0};
 
 };
 
@@ -35,16 +37,12 @@ class CantStopDice : public Dice {
 public:
 	CantStopDice() : Dice(Dice(4)) {};
 	~CantStopDice() {delete[] diceValues;};
-	const int* roll();
+	virtual const int* roll();
 	const int choosePair() const;
-	const int* getPairValues() {return pairValues;};
-
-protected:
-	int pairValues[2] = {0,0};
 
 };
 
-class FakeDice : public CantStopDice {
+class FakeDice : public CantStopDice{
 public:
 	FakeDice() {diceFile.open(INFILE);};
 	const int* roll();

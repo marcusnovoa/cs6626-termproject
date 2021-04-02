@@ -452,10 +452,11 @@ main() {
 //	unitDice( testOutput );
 //	unitPlayer( testOutput );
 //	unitColumn( testOutput );
+//	unitPlayerList( testOutput );
+//	unitCantStopDice( testOutput );
 
 //	Game g = Game();
 //	unitGame( testOutput, g );
-
 //	g.b.unitBoard( testOutput );
 //	g.unitTurn( testOutput );
 

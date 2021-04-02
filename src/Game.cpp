@@ -32,8 +32,6 @@ Game::getNewPlayer() {
 
 void
 Game::oneTurn(Player* pp) {
-	int firstPair;
-	int remainingDice;	// Set to total, then subtract chosen values
 	int choice;
 	bool choosing = true;
 
@@ -41,31 +39,11 @@ Game::oneTurn(Player* pp) {
 		choice = turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions);
 		switch(choice) {
 			case roll:
-				// Reset dice on new roll
-				firstPair = 0;
-				remainingDice = 0;
-
 				// Begin roll
 				diceSet->roll();
-				for(int n = 0; n < DICE_SET_LENGTH; n++)
-					remainingDice += diceSet->getDiceValue(n);
-				
-				// Choose the dice pairs
-				cout << "The dice values you rolled are:\n";
-				for(int n = 0; n < DICE_SET_LENGTH; n++)
-					cout << nth_letter(n + 1) << ". "
-					<< diceSet->getDiceValue(n) << "\n";
-				cout << "\n";
-				chooseDicePair(firstPair);
-
-				// Update the remaining pair
-				remainingDice -= firstPair;
-
-				cout << "\nFirst Pair:  " << firstPair << "\n";
-				cout << "Second Pair: " << remainingDice << "\n\n";
 
 				// Attempt tower movement
-				if(!(b.move(firstPair) | b.move(remainingDice))) {
+				if(!(b.move(diceSet->getPairValues()[0]) | b.move(diceSet->getPairValues()[1]))) {
 					cout << "Busted!\n";
 					b.bust();
 					choosing = false;

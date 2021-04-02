@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 31, 2021
+ * Last Updated: Apr 2, 2021
  *
  */
 #include "Dice.hpp"
@@ -92,40 +92,23 @@ CantStopDice::choosePair() const {
 
 const int*
 FakeDice::roll() {
-	const int size = 4;
-	diceValues = new int[size];
-	int count = 0; 
+	int count = 0;
 	int n;
 
 	//Populate diceValues with file values
-	while (count < size && diceFile >> n) 
+	while (count < nDice && diceFile >> n)
 		diceValues[count++] = n;
 
-	//Get total
-	int pairPriority;
+	//Generate pre-determined pairs
 	int diceTotal = 0;
 	for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
 
-	//Display dice and choose pair
-	cout << "The dice values you rolled are:\n";
-	char opt = 'A';
-	for(int n = 0; n < nDice; n++)
-		cout << opt++ << ". " << diceValues[n] << "\n";
-	cout << "\n";
-	pairValues[0] = choosePair();
+	pairValues[0] = diceValues[0] + diceValues[1];
 	pairValues[1] = diceTotal - pairValues[0];
 
 	//Display pairs chosen and give priority to one
 	cout << "\nPair 1: " << pairValues[0] << "\n";
 	cout << "Pair 2: " << pairValues[1] << "\n\n";
 
-	while(true) {
-		cout << "Choose the number of the pair to use first (1 or 2): ";
-		cin >> pairPriority;
-		if(pairPriority >= 1 && pairPriority <= 2) break;
-		cout << "Invalid input, try again." << endl;
-	}
-
-	if(pairPriority == 2) swap(pairValues[0], pairValues[1]);
 	return pairValues;
 }
