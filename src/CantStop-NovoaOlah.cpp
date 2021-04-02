@@ -455,10 +455,14 @@ main() {
 //	unitPlayerList( testOutput );
 //	unitCantStopDice( testOutput );
 
-	Game g = Game();
+//	Game g = Game();
 //	unitGame( testOutput, g );
 //	g.b.unitBoard( testOutput );
-	g.unitTurn( testOutput );
+//	g.unitTurn( testOutput );
+
+//	unitPlayerList( testOutput );
+//	unitCantStopDice( testOutput );
+	unitFakeDice( testOutput );
 
 	bye();
 

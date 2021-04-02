@@ -43,3 +43,21 @@ OneTurn Tests:
 	Test access of starting a turn through board
 	Test retrieving the current player after it's been set
 	Test going through one turn for the current player
+
+PlayerList Tests:
+	Test construction of CList object
+	Test adding four Player objects to the CList
+	Test running of init function
+	Test moving the current player selection up two spots
+	Test removing the current player (Green)
+	Test printing the new Player list (Orange, Yellow, Blue)
+	Test moving the current player selection up two spots
+	Test printing the new current and previous-to-current Players
+	Test moving the current player selection up one spot to the tail
+	Test removing the tail Player of the list (Blue)
+	Test printing the new Player list (Orange, Yellow)
+	Test removing the remaining Players
+	Test printing the new Player list (CList is empty...)
+	Test re-adding four Player objects to the CList
+	Test re-running of init function
+	Test printing the new Player list (Orange, Yellow, Green, Blue)
