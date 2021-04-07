@@ -21,6 +21,7 @@ public:
 	ostream& print(ostream& out) const;
 	const int getDiceValue(int n) const {return diceValues[n];};
 	const int* getPairValues() const {return pairValues;};
+	void resetDiceValues();
 
 protected:
 	int nDice;			// Number of dice in the array

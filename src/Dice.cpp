@@ -33,6 +33,11 @@ Dice::print(ostream& out) const {
 	return out;
 }
 
+void
+Dice::resetDiceValues() {
+	for(int k = 0; k < nDice; ++k) diceValues[k] = 0;
+}
+
 const int*
 CantStopDice::roll() {
 	//Roll and get total
@@ -86,29 +91,51 @@ CantStopDice::choosePair() const {
 			choosing = false;
 		}
 	}
-
 	return diceValues[inp[0]] + diceValues[inp[1]];
 }
 
 const int*
 FakeDice::roll() {
-	int count = 0;
-	int n;
+	char n;
+	bool diceValuesSet;
+	while (!diceFile.eof()) {
+		//Populate diceValues with file values
+		for(int k = 0; k < nDice; ++k) {
+			diceFile >> n;
+			if (n == 'r') {
+				resetDiceValues();
+				cout << "ROLL\n";
+				break;
+			} else if (n == 's') {
+				resetDiceValues();
+				cout << "STOP\n";
+				break;
+			} else
+				diceValues[k] = (int) n - '0';
+		}
 
-	//Populate diceValues with file values
-	while (count < nDice && diceFile >> n)
-		diceValues[count++] = n;
+		//Check if all diceValues have been set
+		for(int k = 0; k < nDice; ++k) {
+			if(diceValues[k] <= 0) {
+				diceValuesSet = false;
+				break;
+			}
+			diceValuesSet = true;
+		}
 
-	//Generate pre-determined pairs
-	int diceTotal = 0;
-	for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
+		//If the line was not a STOP or ROLL, set the pairs
+		if(diceValuesSet) {
+			//Generate pre-determined pairs
+			int diceTotal = 0;
+			for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
 
-	pairValues[0] = diceValues[0] + diceValues[1];
-	pairValues[1] = diceTotal - pairValues[0];
+			pairValues[0] = diceValues[0] + diceValues[1];
+			pairValues[1] = diceTotal - pairValues[0];
 
-	//Display pairs chosen and give priority to one
-	cout << "\nPair 1: " << pairValues[0] << "\n";
-	cout << "Pair 2: " << pairValues[1] << "\n\n";
-
+			//Display pairs chosen and give priority to one
+			cout << "\nPair 1: " << pairValues[0] << "\n";
+			cout << "Pair 2: " << pairValues[1] << "\n\n";
+		}
+	}
 	return pairValues;
 }
