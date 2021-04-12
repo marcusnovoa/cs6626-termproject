@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 2, 2021
+ * Last Updated: Apr 8, 2021
  * 
  */
 #ifndef DICE_HPP_
@@ -43,9 +43,10 @@ public:
 
 };
 
-class FakeDice : public CantStopDice{
+class FakeDice : public CantStopDice {
 public:
 	FakeDice() {diceFile.open(INFILE);};
+	int infPosition = 0; // Keep track of in-file position
 	const int* roll();
 
 private:

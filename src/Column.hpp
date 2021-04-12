@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #ifndef COLUMN_HPP_
@@ -25,7 +25,7 @@ public:
     const bool move();
     const bool hasTower() const {return markers[0] != 0;};
     void stop(Player* pp);
-    void bust() {};
+    void bust() {markers[0] = 0;};
 
 private:
     static const int numOfSquares[13];	// Number of squares in every column

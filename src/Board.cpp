@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #include "Board.hpp"
@@ -49,8 +49,7 @@ Board::stop() {
 void
 Board::bust() {
     for(int n = 0; n < 3; n++)
-        if(towersInUse[n] > 0)
-            backBone[towersInUse[n]]->bust();
+        if(towersInUse[n] >= 0) backBone[towersInUse[n]]->bust();
 }
 
 void

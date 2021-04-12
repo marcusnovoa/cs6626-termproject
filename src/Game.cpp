@@ -1,12 +1,45 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 
 #include "Game.hpp"
 
-Game::Game() : p1(getNewPlayer()) {}
+Game::Game() {
+	bool creating = true;
+	char creatingChoice = 'Y';
+	while (creating && playerList.count() < 4) {
+		playerList.addItem(getNewPlayer());
+		cout << "\nCreate another player? (y / n): ";
+		cin >> creatingChoice;
+		if(toupper(creatingChoice) == 'N') creating = false;
+		cout << '\n';
+	}
+	playerList.init();
+
+	bool choosing = true;
+	int diceChoice = 0;
+	cout << "1. CantStop Dice, 2. Fake Dice\n";
+	cout << "[Player " << numOfPlayers << "] Which set of dice would you like to use? ";
+	cin >> diceChoice;
+	cout << '\n';
+
+	while (choosing) {
+		switch(diceChoice) {
+			case 1:
+				diceSet = new CantStopDice();
+				choosing = false;
+				break;
+			case 2:
+				diceSet = new FakeDice();
+				choosing = false;
+				break;
+			default:
+				cout << "\nInvalid option. Please try again.\n";
+		}
+	}
+}
 
 Player*
 Game::getNewPlayer() {
@@ -30,8 +63,23 @@ Game::getNewPlayer() {
 	return new Player(pName, ColorEnum(pColor));
 }
 
+bool
+Game::hasWinner() {
+	Player* pp = playerList.getCurrentData();
+	bool isWinner = false;
+	for (int p = 0; p < numOfPlayers; ++p) {
+		isWinner = pp->score() >= 3;
+		if (isWinner) {
+			cout << pp->getName() << " is the winner!\n";
+			break;
+		}
+		pp = playerList.getNext();
+	}
+	return isWinner;
+}
+
 void
-Game::oneTurn(Player* pp) {
+Game::oneTurn() {
 	int choice;
 	bool choosing = true;
 
@@ -43,7 +91,8 @@ Game::oneTurn(Player* pp) {
 				diceSet->roll();
 
 				// Attempt tower movement
-				if(!(b.move(diceSet->getPairValues()[0]) | b.move(diceSet->getPairValues()[1]))) {
+				if(!(b.move(diceSet->getPairValues()[0]) | 
+					b.move(diceSet->getPairValues()[1]))) {
 					cout << "Busted!\n";
 					b.bust();
 					choosing = false;
@@ -52,9 +101,9 @@ Game::oneTurn(Player* pp) {
 				cout << b << "\n";
 				break;
 			case stop:
-				cout << pp->getName() << " has stopped their turn.\n";
+				cout << playerList.getCurrentData()->getName() 
+					 << " has stopped their turn.\n";
 				b.stop();
-
 				// Print column winnings, if any
 				cout << b << "\n";
 				
@@ -65,34 +114,32 @@ Game::oneTurn(Player* pp) {
 				break;
 		}
 	}
+	playerList.next();
 }
 
 void
-Game::chooseDicePair(int& dicePair) {
-	bool choosing = true;
-	string inp;
-	char max = nth_letter(DICE_SET_LENGTH);
+Game::fakeOneTurn() {
+	const int* pairs;
+	bool running = true;
+	while (running) {
+		pairs = diceSet->roll();
 
-	while (choosing) {
-		cout << "Choose two unique letters from A to " << max
-			 << " for Dice pair: ";
-		cin >> inp;
-		for(int k = 0; k < inp.length(); ++k) inp[k] = toupper(inp[k]);
-		for(int n = 0; n < inp.length(); ++n) {
-			if(inp[n] >= 'A' && inp[n] <= max
-			   && inp.length() == 2 && inp[0] != inp[1]) {
-				inp[n] -= 'A';
+		// If STOP signal is found in file (7 7 7 7)
+		if(pairs[0] > 12 && pairs[1] > 12) {
+			cout << playerList.getCurrentData()->getName() 
+				 << " has stopped their turn.\n\n";
+			b.stop();
+			running = false;
+		} else {
+			// Attempt tower movement
+			if(!(b.move(pairs[0]) | b.move(pairs[1]))) {	// If pair totals can be moved
+				cout << "Busted!\n";
+				b.bust();
 			}
-			else {
-				cout << "Invalid input, try again." << endl;
-				choosing = true;
-				break;
-			}
-			choosing = false;
 		}
+		cout << b << "\n";
 	}
-
-	dicePair += diceSet->getDiceValue(inp[0]) + diceSet->getDiceValue(inp[1]);
+	playerList.next();
 }
 
 const int
@@ -111,14 +158,14 @@ Game::turnMenu(string title, int n, const char* menu[]) const {
 	return result - '0';
 }
 
-const char
-Game::nth_letter(int n) {
-    if(n >= 1 && n <= 26) return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n - 1];
-	return '?';
+void
+Game::unitTurn(ofstream& ofs) {
+	b.startTurn(playerList.getCurrentData()); // Start turn
+	oneTurn();
 }
 
 void
-Game::unitTurn(ofstream& ofs) {
-	b.startTurn(p1); // Start turn
-	oneTurn(p1);
+Game::fakeUnitTurn(ofstream& ofs) {
+	b.startTurn(playerList.getCurrentData()); // Start turn
+	fakeOneTurn();
 }

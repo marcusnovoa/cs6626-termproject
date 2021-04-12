@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #include "Column.hpp"
@@ -56,9 +56,10 @@ Column::move() {
 
 void
 Column::stop(Player* pp) {
-    markers[pp->color()] = markers[0];   // Set the tower to a colored tile
-    markers[0] = 0;                      // Remove the tower
-    if ( state == pending )              // If the column state is pending
-        state = captured;                // Set the state to captured
-    pp->wonColumn(number);               // Player wins column number
+    markers[pp->color()] = markers[0];	// Set the tower to a colored tile
+    markers[0] = 0;                   	// Remove the tower
+    if(state == pending) {				// If the column state is pending
+        state = captured;     			// Set the state to captured
+    	pp->wonColumn(number);			// Player wins column number
+	}
 };

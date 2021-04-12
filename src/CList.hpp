@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 25, 2021
+ * Last Updated: Apr 8, 2021
  * 
  */
 #ifndef CLIST_HPP_
@@ -22,9 +22,10 @@ template <class T> class Cell { // Dependent class. Points to another Cell.
     private:
         T data;
         Cell<T>* next;
+        T getData() {return data;};
 
     Cell(T in, Cell* nx){data = in;next = nx;}
-    ~Cell(){cout << data->getName() << " deleted.\n"; delete data;}
+    ~Cell(){cout << data->getName() << " deleted.\n";}
 };
 
 //-----------------------------------------------------------------------------
@@ -54,6 +55,8 @@ public:
     void init(){curr = head; prevCurr = tail;}
     T next();
     void remove();
+    T getCurrentData() {return curr->data;};
+    T getNext() {return curr->next->getData();};
 };
 
 template <class T>
@@ -94,8 +97,9 @@ CList<T>::next() {
         cout << "New Current Player:\n";
     } else
         cout << "Current Player:\n";
-    cout << "\tPlayer Name:  " << curr->data->getName() << "\n";
-    cout << "\tPlayer Color: " << colors[curr->data->color()] << "\n";
+    cout << "\tName:  " << curr->data->getName() << "\n";
+    cout << "\tColor: " << colors[curr->data->color()] << "\n";
+    cout << "\tScore: " << curr->data->score() << "\n\n";
     return curr->data;
 }
 

@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #ifndef BOARD_HPP_

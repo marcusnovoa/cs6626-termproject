@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 2, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #include "Dice.hpp"
@@ -96,46 +96,28 @@ CantStopDice::choosePair() const {
 
 const int*
 FakeDice::roll() {
-	char n;
-	bool diceValuesSet;
-	while (!diceFile.eof()) {
-		//Populate diceValues with file values
-		for(int k = 0; k < nDice; ++k) {
-			diceFile >> n;
-			if (n == 'r') {
-				resetDiceValues();
-				cout << "ROLL\n";
-				break;
-			} else if (n == 's') {
-				resetDiceValues();
-				cout << "STOP\n";
-				break;
-			} else
-				diceValues[k] = (int) n - '0';
-		}
+	string line;
+	diceFile.seekg(infPosition, ios::beg);
+	getline(diceFile, line);
 
-		//Check if all diceValues have been set
-		for(int k = 0; k < nDice; ++k) {
-			if(diceValues[k] <= 0) {
-				diceValuesSet = false;
-				break;
-			}
-			diceValuesSet = true;
-		}
-
-		//If the line was not a STOP or ROLL, set the pairs
-		if(diceValuesSet) {
-			//Generate pre-determined pairs
-			int diceTotal = 0;
-			for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
-
-			pairValues[0] = diceValues[0] + diceValues[1];
-			pairValues[1] = diceTotal - pairValues[0];
-
-			//Display pairs chosen and give priority to one
-			cout << "\nPair 1: " << pairValues[0] << "\n";
-			cout << "Pair 2: " << pairValues[1] << "\n\n";
-		}
+	int n = 0;
+	for (int k = 0; k < nDice; ++k) {
+		diceValues[k] = (int) (line[n] - '0');
+		n += 2; // Skip spaces on each line
 	}
+
+	int diceTotal = 0;
+	for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
+
+	//Generate pre-determined pairs
+	pairValues[0] = diceValues[0] + diceValues[1];
+	pairValues[1] = diceTotal - pairValues[0];
+
+	//Display pairs chosen and give priority to one
+	if(pairValues[0] <= 12) cout << "Pair 1: " << pairValues[0] << "\n";
+	if(pairValues[1] <= 12) cout << "Pair 2: " << pairValues[1] << "\n\n";
+
+	infPosition += 8;
+
 	return pairValues;
 }

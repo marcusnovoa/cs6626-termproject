@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #ifndef PLAYER_HPP_
@@ -17,7 +17,7 @@ public:
     Player(string name, ColorEnum color);
     ~Player() = default;
     ColorEnum color() const {return playerColor;};
-//  int score() const{return playerScore;};
+    int score() const{return playerScore;};
     const bool wonColumn(int colNum);
     ostream& print(ostream& out) const;
     const string getName() const {return playerName;};

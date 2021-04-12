@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Mar 29, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -22,22 +22,23 @@ using namespace std;
 class Game {
 public:
 	Game();
-	~Game(){delete diceSet;};
+	~Game() = default;
 	Dice* getDiceSet() const {return diceSet;};
 	Player* getNewPlayer();
-	Player* getPlayerOne() const {return p1;};
-	void oneTurn(Player* pp);
-	void chooseDicePair(int& dicePair);
+	bool hasWinner();
+	void oneTurn();
+	void fakeOneTurn();
 	const int turnMenu(string title, int n, const char* menu[]) const;
 	void unitTurn(ofstream& ofs);
+	void fakeUnitTurn(ofstream& ofs);
 
 private:
 	int numOfPlayers = 0; // Used for output
 	Board b = Board();
-	Dice* diceSet = new FakeDice();
-	Player* p1;	// Needs input from keyboard
+	Dice* diceSet;
+	CList<Player*> playerList;
+	Player* winner;
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
-	static const char nth_letter(int n);
 
 };
 
