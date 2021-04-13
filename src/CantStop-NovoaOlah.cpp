@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 12, 2021
  *
  */
 #include "CList.hpp"
@@ -424,23 +424,23 @@ void
 unitFakeDice(ofstream& ofs) {
 	Game g = Game();
 	g.fakeOneTurn();
-	// //Test case for Fake Dice test set
-	// cout << "Constructing Fake Dice test set." << "\n";
-	// ofs << "Constructing Fake Dice test set." << "\n";
-	// FakeDice* test0 = new FakeDice();
+	 //Test case for Fake Dice test set
+	 cout << "Constructing Fake Dice test set." << "\n";
+	 ofs << "Constructing Fake Dice test set." << "\n";
+	 FakeDice* test0 = new FakeDice();
 
-	// //Roll Fake Dice test set
-	// cout << "Rolling Fake Dice test set." << "\n";
-	// ofs << "Rolling Fake Dice test set." << "\n";
-	// test0->roll();
+	 //Roll Fake Dice test set
+	 cout << "Rolling Fake Dice test set." << "\n";
+	 ofs << "Rolling Fake Dice test set." << "\n";
+	 test0->roll();
 
-	// //Print Fake Dice test pair values
-	// cout << "\nPrinting Fake Dice test pair values in console." << "\n";
-	// ofs << "\nPrinting Fake Dice test pair values in console." << "\n";
-	// for (int k = 0; k < 2; ++k) {
-	// 	cout << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
-	// 	ofs << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
-	// }
+	 //Print Fake Dice test pair values
+	 cout << "\nPrinting Fake Dice test pair values in console." << "\n";
+	 ofs << "\nPrinting Fake Dice test pair values in console." << "\n";
+	 for (int k = 0; k < 2; ++k) {
+	 	cout << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+	 	ofs << "Chosen Pair " << k+1 << ": " << test0->getPairValues()[k] << "\n";
+	 }
 }
 
 int
@@ -460,8 +460,9 @@ main() {
 	Game g = Game();
 //	unitGame( testOutput, g );
 //	g.b.unitBoard( testOutput );
+
 	while(!g.hasWinner()) {
-		g.fakeUnitTurn(testOutput);
+		g.unitTurn(testOutput);
 		cout << "Turn has ended.\n\n";
 	}
 

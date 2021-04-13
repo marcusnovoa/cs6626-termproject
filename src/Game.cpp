@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 12, 2021
  *
  */
 
@@ -11,9 +11,11 @@ Game::Game() {
 	char creatingChoice = 'Y';
 	while (creating && playerList.count() < 4) {
 		playerList.addItem(getNewPlayer());
-		cout << "\nCreate another player? (y / n): ";
-		cin >> creatingChoice;
-		if(toupper(creatingChoice) == 'N') creating = false;
+		if(playerList.count() < 4) {
+			cout << "\nCreate another player? (y / n): ";
+			cin >> creatingChoice;
+			if(toupper(creatingChoice) == 'N') creating = false;
+		}
 		cout << '\n';
 	}
 	playerList.init();
