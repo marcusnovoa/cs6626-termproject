@@ -30,7 +30,6 @@ public:
 	void fakeOneTurn();
 	const int turnMenu(string title, int n, const char* menu[]) const;
 	void unitTurn(ofstream& ofs);
-	void fakeUnitTurn(ofstream& ofs);
 
 private:
 	int numOfPlayers = 0; // Used for output
