@@ -29,10 +29,12 @@ Game::Game() {
 		switch(diceChoice) {
 			case 1:
 				diceSet = new CantStopDice();
+				usingFakeDice = false;
 				choosing = false;
 				break;
 			case 2:
 				diceSet = new FakeDice();
+				usingFakeDice = true;
 				choosing = false;
 				break;
 			default:
@@ -161,11 +163,8 @@ Game::turnMenu(string title, int n, const char* menu[]) const {
 void
 Game::unitTurn(ofstream& ofs) {
 	b.startTurn(playerList.getCurrentData()); // Start turn
-	oneTurn();
-}
-
-void
-Game::fakeUnitTurn(ofstream& ofs) {
-	b.startTurn(playerList.getCurrentData()); // Start turn
-	fakeOneTurn();
+	if (!usingFakeDice)
+		oneTurn();
+	else
+		fakeOneTurn();
 }

@@ -461,7 +461,7 @@ main() {
 //	unitGame( testOutput, g );
 //	g.b.unitBoard( testOutput );
 	while(!g.hasWinner()) {
-		g.fakeUnitTurn(testOutput);
+		g.unitTurn(testOutput);
 		cout << "Turn has ended.\n\n";
 	}
 

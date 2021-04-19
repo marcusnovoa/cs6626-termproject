@@ -39,6 +39,7 @@ private:
 	CList<Player*> playerList;
 	Player* winner;
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
+	bool usingFakeDice;
 
 };
 
