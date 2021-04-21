@@ -13,20 +13,20 @@ class BadPlayer {
 public:
 	string badInput;
 
-	virtual ~BadPlayer();
-	virtual ostream& print();
+	virtual ~BadPlayer() = default;
+	virtual ostream& print(ostream& out);
 };
 
 class BadName : public BadPlayer {
 public:
-	~BadName();
-	ostream& print();
+	~BadName() = default;
+	ostream& print(ostream& out);
 };
 
 class BadColor : public BadPlayer {
 public:
-	~BadColor();
-	ostream& print();
+	~BadColor() = default;
+	ostream& print(ostream& out);
 };
 
 #endif /* BADPLAYER_HPP_ */

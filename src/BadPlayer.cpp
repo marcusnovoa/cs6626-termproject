@@ -6,3 +6,20 @@
 
 #include "BadPlayer.hpp"
 
+ostream&
+BadPlayer::print(ostream& out) {
+
+	return out;
+}
+
+ostream&
+BadName::print(ostream& out) {
+
+	return out;
+}
+
+ostream&
+BadColor::print(ostream& out) {
+
+	return out;
+}

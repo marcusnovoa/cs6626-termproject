@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 12, 2021
+ * Last Updated: Apr 8, 2021
  *
  */
 
@@ -11,11 +11,9 @@ Game::Game() {
 	char creatingChoice = 'Y';
 	while (creating && playerList.count() < 4) {
 		playerList.addItem(getNewPlayer());
-		if(playerList.count() < 4) {
-			cout << "\nCreate another player? (y / n): ";
-			cin >> creatingChoice;
-			if(toupper(creatingChoice) == 'N') creating = false;
-		}
+		cout << "\nCreate another player? (y / n): ";
+		cin >> creatingChoice;
+		if(toupper(creatingChoice) == 'N') creating = false;
 		cout << '\n';
 	}
 	playerList.init();
@@ -31,10 +29,12 @@ Game::Game() {
 		switch(diceChoice) {
 			case 1:
 				diceSet = new CantStopDice();
+				usingFakeDice = false;
 				choosing = false;
 				break;
 			case 2:
 				diceSet = new FakeDice();
+				usingFakeDice = true;
 				choosing = false;
 				break;
 			default:
@@ -163,11 +163,13 @@ Game::turnMenu(string title, int n, const char* menu[]) const {
 void
 Game::unitTurn(ofstream& ofs) {
 	b.startTurn(playerList.getCurrentData()); // Start turn
-	oneTurn();
+	if (!usingFakeDice)
+		oneTurn();
+	else
+		fakeOneTurn();
 }
 
 void
-Game::fakeUnitTurn(ofstream& ofs) {
-	b.startTurn(playerList.getCurrentData()); // Start turn
-	fakeOneTurn();
+Game::checkData(string data) {
+
 }

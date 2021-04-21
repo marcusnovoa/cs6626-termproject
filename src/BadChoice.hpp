@@ -13,16 +13,20 @@ class BadChoice {
 public:
 	string badInput;
 
+	virtual ~BadChoice() = default;
+	virtual ostream& print(ostream& out);
 };
 
 class DuplicateSlot : public BadChoice {
 public:
-
+	~DuplicateSlot() = default;
+	ostream& print(ostream& out);
 };
 
 class BadSlot : BadChoice {
 public:
-
+	~BadSlot() = default;
+	ostream& print(ostream& out);
 };
 
 #endif /* BADCHOICE_HPP_ */

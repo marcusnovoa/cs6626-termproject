@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 21, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -16,6 +16,8 @@
 #include "Column.hpp"
 #include <string>
 #include "CList.hpp"
+#include "BadPlayer.hpp"
+#include "BadChoice.hpp"
 
 using namespace std;
 
@@ -30,7 +32,6 @@ public:
 	void fakeOneTurn();
 	const int turnMenu(string title, int n, const char* menu[]) const;
 	void unitTurn(ofstream& ofs);
-	void fakeUnitTurn(ofstream& ofs);
 
 private:
 	int numOfPlayers = 0; // Used for output
@@ -39,7 +40,9 @@ private:
 	CList<Player*> playerList;
 	Player* winner;
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
+	bool usingFakeDice;
 
+	void checkData(string data);
 };
 
 #endif /* GAME_HPP_ */
