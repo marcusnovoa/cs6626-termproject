@@ -61,3 +61,10 @@ PlayerList Tests:
 	Test re-adding four Player objects to the CList
 	Test re-running of init function
 	Test printing the new Player list (Orange, Yellow, Green, Blue)
+
+PolyDice Tests:
+	Test construction of Dice set using CantStopDice or FakeDice
+	Test proper functionality of oneTurn version through Dice set type
+	Test full run-through of dice values within an input file for FakeDice
+	Test completion of a full game of Cant Stop using either Dice set
+
