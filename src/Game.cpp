@@ -168,3 +168,8 @@ Game::unitTurn(ofstream& ofs) {
 	else
 		fakeOneTurn();
 }
+
+void
+Game::checkData(string data) {
+
+}
