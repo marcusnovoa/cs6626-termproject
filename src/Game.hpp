@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 21, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -16,6 +16,8 @@
 #include "Column.hpp"
 #include <string>
 #include "CList.hpp"
+#include "BadPlayer.hpp"
+#include "BadChoice.hpp"
 
 using namespace std;
 
@@ -40,6 +42,7 @@ private:
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
 	bool usingFakeDice;
 
+	void checkData(string data);
 };
 
 #endif /* GAME_HPP_ */
