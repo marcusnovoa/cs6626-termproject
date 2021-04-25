@@ -1,11 +1,12 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 24, 2021
  *
  */
 #include "Dice.hpp"
 
 #define MAX_DICE 50		// Largest allowed number of dice
+#define PAIR_LENGTH 2
 
 Dice::Dice(int n) {
 	if(n <= 0) fatal("Error: Invalid amount of dice.\n");
@@ -42,7 +43,7 @@ const int*
 CantStopDice::roll() {
 	//Roll and get total
 	Dice::roll();
-	int pairPriority;
+	string pairPriority;
 	int diceTotal = 0;
 	for(int d = 0; d < nDice; ++d) diceTotal += diceValues[d];
 
@@ -60,35 +61,47 @@ CantStopDice::roll() {
 	cout << "Pair 2: " << pairValues[1] << "\n\n";
 
 	while(true) {
-		cout << "Choose the number of the pair to use first (1 or 2): ";
-		cin >> pairPriority;
-		if(pairPriority >= 1 && pairPriority <= 2) break;
-		cout << "Invalid input, try again." << endl;
+		try {
+			cout << "Choose the number of the pair to use first (1 or 2): ";
+			cin >> pairPriority;
+			if(pairPriority != "1" && pairPriority != "2")
+				throw BadPriority(pairPriority);
+			break;
+		} catch(BadPriority& bp) {
+			cout << bp << endl;
+		}
 	}
 
-	if(pairPriority == 2) swap(pairValues[0], pairValues[1]);
+	if(pairPriority == "2") swap(pairValues[0], pairValues[1]);
 	return pairValues;
 }
 
 const int
 CantStopDice::choosePair() const {
-	bool choosing = true;
 	string inp;
-	while (choosing) {
-		cout << "Choose two unique letters from A to D for Dice pair: ";
-		cin >> inp;
-		for(int k = 0; k < inp.length(); ++k) inp[k] = toupper(inp[k]);
-		for(int n = 0; n < inp.length(); ++n) {
-			if(inp[n] >= 'A' && inp[n] <= 'D'
-			   && inp.length() == 2 && inp[0] != inp[1]) {
+	while (true) {
+		try {
+			cout << "Choose two unique letters from A to D for Dice pair: ";
+			cin >> inp;
+			if(inp.length() != PAIR_LENGTH) throw SlotAmount(inp);
+			for(int k = 0; k < PAIR_LENGTH; ++k) inp[k] = toupper(inp[k]);
+
+			if(inp[0] == inp[1]) throw DuplicateSlot(inp);
+
+			if(inp[0] < 'A' || inp[0] > 'D' ||
+			   inp[1] < 'A' || inp[1] > 'D')
+				throw BadSlot(inp);
+
+			for(int n = 0; n < PAIR_LENGTH; ++n) {
 				inp[n] -= 'A';
 			}
-			else {
-				cout << "Invalid input, try again." << endl;
-				choosing = true;
-				break;
-			}
-			choosing = false;
+			break;
+		} catch(DuplicateSlot& ds) {
+			cout << ds << endl;
+		} catch(BadSlot& bs) {
+			cout << bs << endl;
+		} catch(SlotAmount& sa) {
+			cout << sa << endl;
 		}
 	}
 	return diceValues[inp[0]] + diceValues[inp[1]];

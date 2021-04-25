@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 21, 2021
+ * Last Updated: Apr 24, 2021
  *
  */
 #ifndef GAME_HPP_
@@ -10,6 +10,7 @@
 #define DICE_SET_LENGTH 4
 #define MAX_PLAYERS 4
 
+#include "BadPlayer.hpp"
 #include "Board.hpp"
 #include "Dice.hpp"
 #include "Player.hpp"
@@ -30,7 +31,7 @@ public:
 	bool hasWinner();
 	void oneTurn();
 	void fakeOneTurn();
-	const int turnMenu(string title, int n, const char* menu[]) const;
+	const char turnMenu(string title, int n, const char* menu[]) const;
 	void unitTurn(ofstream& ofs);
 
 private:
@@ -40,6 +41,8 @@ private:
 	CList<Player*> playerList;
 	Player* winner;
 	const char* actions[3] = {"Roll", "Stop", "Resign"};
+	string takenNames[4] = {"", "", "", ""};
+	int takenColors[4] = {0, 0, 0, 0};
 	bool usingFakeDice;
 
 	void checkData(string data);

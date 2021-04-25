@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 12, 2021
+ * Last Updated: Apr 24, 2021
  *
  */
 #include "CList.hpp"
@@ -443,6 +443,21 @@ unitFakeDice(ofstream& ofs) {
 	 }
 }
 
+void
+unitPolyDice(ofstream& ofs, Game& game) {
+	while(!game.hasWinner()) {
+		game.unitTurn(ofs);
+		cout << "Turn has ended.\n\n";
+	}
+	cout << "Game has ended." <<endl;
+}
+
+void
+unitPolyExceptions(ofstream& ofs) {
+	Game g = Game();
+	unitPolyDice(ofs, g);
+}
+
 int
 main() {
 	ofstream testOutput;
@@ -457,18 +472,15 @@ main() {
 //	unitPlayerList( testOutput );
 //	unitCantStopDice( testOutput );
 
-	Game g = Game();
+//	Game g = Game();
 //	unitGame( testOutput, g );
 //	g.b.unitBoard( testOutput );
-
-	while(!g.hasWinner()) {
-		g.unitTurn(testOutput);
-		cout << "Turn has ended.\n\n";
-	}
 
 //	unitPlayerList( testOutput );
 //	unitCantStopDice( testOutput );
 //	unitFakeDice( testOutput );
+//	unitPolyDice( testOutput, g );
+	unitPolyExceptions( testOutput );
 
 	bye();
 
