@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 24, 2021
  * 
  */
 #ifndef DICE_HPP_
@@ -8,6 +8,7 @@
 
 #include "tools.hpp"
 #include <iostream>
+#include "BadChoice.hpp"
 
 #define INFILE "./src/fakeDiceInput.txt"
 

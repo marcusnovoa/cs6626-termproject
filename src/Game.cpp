@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 24, 2021
  *
  */
 
@@ -9,13 +9,28 @@
 Game::Game() {
 	bool creating = true;
 	char creatingChoice = 'Y';
-	while (creating && playerList.count() < 4) {
-		playerList.addItem(getNewPlayer());
-		cout << "\nCreate another player? (y / n): ";
-		cin >> creatingChoice;
-		if(toupper(creatingChoice) == 'N') creating = false;
-		cout << '\n';
+	while(creating && playerList.count() < 4)
+	{
+		try {
+			Player* newPlayer = getNewPlayer();
+			checkData(newPlayer->getName() + " " + to_string(newPlayer->color()));
+			playerList.addItem(newPlayer);
+			if(numOfPlayers < 4) numOfPlayers++;	// Increase current number of players in-game
+			if(numOfPlayers >= 4) {
+				cout << "\nGame is full.\n" << endl;
+				break;
+			}
+			cout << "\nCreate another player? (y / n): ";
+			cin >> creatingChoice;
+			if(toupper(creatingChoice) == 'N') creating = false;
+			cout << '\n';
+		} catch (BadPlayer& bp) {
+			cout << bp << endl;
+		} catch (...) {
+			fatal("Caught something besides BadPlayer.");
+		}
 	}
+
 	playerList.init();
 
 	bool choosing = true;
@@ -46,23 +61,32 @@ Game::Game() {
 Player*
 Game::getNewPlayer() {
 	string pName;
-	int pColor;
-	numOfPlayers++;	// Increase current number of players in-game
+	string pColor;
 
-	cout << "[Player " << numOfPlayers << "] Enter your name: ";
+	cout << "[Player " << numOfPlayers + 1 << "] Enter your name: ";
 	cin >> pName;
-	cout << "\n1. Orange, 2. Yellow, 3. Green, 4. Blue\n";
-	cout << "[Player " << numOfPlayers << "] Pick a color by inputting a number: ";
-	cin >> pColor;
 
-	while ( pColor < 1 || pColor > 4 ) {
-		cout << "\nInvalid option. Please try again.\n";
-		cout << "1. Orange, 2. Yellow, 3. Green, 4. Blue\n";
-		cout << "[Player " << numOfPlayers << "] Pick a color by inputting a number: ";
-		cin >> pColor;
-	}
 	cout << endl;
-	return new Player(pName, ColorEnum(pColor));
+
+	while (true) {
+		try {
+			cout << "1. Orange, 2. Yellow, 3. Green, 4. Blue" << endl;
+			cout << "[Player " << numOfPlayers + 1 << "] Pick a color by inputting a number: ";
+			cin >> pColor;
+			if (pColor != "1" &&
+				pColor != "2" &&
+				pColor != "3" &&
+				pColor != "4")
+				throw BadColorChoice(pColor);
+			break;
+		} catch(BadColorChoice& bcc) {
+			cout << bcc << endl;
+		}
+	}
+
+	takenNames[numOfPlayers] = pName;
+	takenColors[numOfPlayers] = stoi(pColor);
+	return new Player(pName, ColorEnum(stoi(pColor)));
 }
 
 bool
@@ -100,11 +124,11 @@ Game::oneTurn() {
 					choosing = false;
 					break;
 				}
-				cout << b << "\n";
+				cout << "\n" << b << "\n";
 				break;
 			case stop:
 				cout << playerList.getCurrentData()->getName() 
-					 << " has stopped their turn.\n";
+					 << " has stopped their turn.\n" << endl;
 				b.stop();
 				// Print column winnings, if any
 				cout << b << "\n";
@@ -144,20 +168,32 @@ Game::fakeOneTurn() {
 	playerList.next();
 }
 
-const int
+const char
 Game::turnMenu(string title, int n, const char* menu[]) const {
-	char result = 0;
+	string result;
 	cout << title;
 	for (int j = 0; j < n; j++)
 		cout << j + 1 << ". " << menu[j] << "\n";
-	while(true) {
-		cout << "\nEnter desired number: ";
-		cin >> result;
-		if(result >= '1' && result <= (char)(n + '0')) break;
-		cout << "Invalid input, try again." << endl;
+
+	cout << endl;
+	while(true){
+		try {
+			cout << "Enter desired number: ";
+			cin >> result;
+			if(result.length() != 1 ||
+			   result[0] < '1' ||
+			   result[0] > (char)(n + '0'))
+				throw BadChoice(result);
+			break;
+		} catch (BadChoice& bc) {
+			cout << bc << endl;
+		} catch (...) {
+			fatal("Caught something besides BadChoice.");
+		}
 	}
+
 	cout << "\n";
-	return result - '0';
+	return result[0] - '0';
 }
 
 void
@@ -171,5 +207,28 @@ Game::unitTurn(ofstream& ofs) {
 
 void
 Game::checkData(string data) {
+	//split data into name and color
+	int dataColor = stoi(data.substr(data.find(' ') + 1, 1));
+	string dataName = data.substr(0, data.find(' '));
 
+	bool nameTaken, colorTaken = false;
+
+	for(int n = 0; n < playerList.count(); ++n) {
+		if (!takenNames[n].empty() && dataName == takenNames[n]) {
+			nameTaken = true;
+		}
+		if (takenColors[n] > 0 && dataColor == takenColors[n]) {
+			colorTaken = true;
+		}
+	}
+
+	if (nameTaken && colorTaken) {
+		throw BadPlayer(data);
+	}
+	else if (nameTaken) {
+		throw BadName(data);
+	}
+	else if (colorTaken) {
+		throw BadColor(data);
+	}
 }
