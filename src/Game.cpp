@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 24, 2021
+ * Last Updated: Apr 26, 2021
  *
  */
 
@@ -119,7 +119,7 @@ Game::oneTurn() {
 				// Attempt tower movement
 				if(!(b.move(diceSet->getPairValues()[0]) | 
 					b.move(diceSet->getPairValues()[1]))) {
-					cout << "Busted!\n";
+					cout << "\nBusted!\n" << endl;
 					b.bust();
 					choosing = false;
 					break;

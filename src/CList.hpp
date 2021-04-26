@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 26, 2021
  * 
  */
 #ifndef CLIST_HPP_
@@ -48,8 +48,8 @@ public:
         }
         cout << "Deleting CList.\n";
     }
-    int count(){return counter;}
-    bool empty() const {return counter == 0;}
+    const int count(){return counter;}
+    const bool empty() const {return counter == 0;}
     ostream& print(ostream& out) const;
     void addItem(T in);
     void init(){curr = head; prevCurr = tail;}

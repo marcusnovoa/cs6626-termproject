@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 26, 2021
  *
  */
 #ifndef COLUMN_HPP_
@@ -19,7 +19,7 @@ class Column {
 public:
     Column(int colNumber);
     ~Column() = default;
-    const ColumnState getState(){return state;};
+    const ColumnState getState() {return state;};
     ostream& print(ostream& out) const;
     const bool startTower(Player* p);
     const bool move();
