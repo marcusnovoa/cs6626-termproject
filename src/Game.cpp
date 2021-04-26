@@ -107,12 +107,10 @@ Game::hasWinner() {
 
 void
 Game::oneTurn() {
-	int choice;
 	bool choosing = true;
 
 	while(choosing) {
-		choice = turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions);
-		switch(choice) {
+		switch(turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions)) {
 			case roll:
 				// Begin roll
 				diceSet->roll();
