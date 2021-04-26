@@ -70,14 +70,14 @@ CList<T>::addItem(T in) {
     if (empty()) {
         head = new Cell<T>(in, head);
         tail = head;
-        cout << "Head (First Cell):\n";
+        cout << "\nHead (First Cell):\n";
         cout << "\tPlayer Name:  " << in->getName() << "\n";
         cout << "\tPlayer Color: " << colors[in->color()] << "\n";
     } else {
         tail->next = new Cell<T>(in, head);
         tail = tail->next;  // New tail
         tail->next = head;  // Point back to head from tail
-        cout << "New Tail:\n";
+        cout << "\nNew Tail:\n";
         cout << "\tPlayer Name:  " << in->getName() << "\n";
         cout << "\tPlayer Color: " << colors[in->color()] << "\n";
     }
