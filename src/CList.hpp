@@ -1,6 +1,6 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 8, 2021
+ * Last Updated: Apr 26, 2021
  * 
  */
 #ifndef CLIST_HPP_
@@ -48,8 +48,8 @@ public:
         }
         cout << "Deleting CList.\n";
     }
-    int count(){return counter;}
-    bool empty() const {return counter == 0;}
+    const int count(){return counter;}
+    const bool empty() const {return counter == 0;}
     ostream& print(ostream& out) const;
     void addItem(T in);
     void init(){curr = head; prevCurr = tail;}
@@ -70,14 +70,14 @@ CList<T>::addItem(T in) {
     if (empty()) {
         head = new Cell<T>(in, head);
         tail = head;
-        cout << "Head (First Cell):\n";
+        cout << "\nHead (First Cell):\n";
         cout << "\tPlayer Name:  " << in->getName() << "\n";
         cout << "\tPlayer Color: " << colors[in->color()] << "\n";
     } else {
         tail->next = new Cell<T>(in, head);
         tail = tail->next;  // New tail
         tail->next = head;  // Point back to head from tail
-        cout << "New Tail:\n";
+        cout << "\nNew Tail:\n";
         cout << "\tPlayer Name:  " << in->getName() << "\n";
         cout << "\tPlayer Color: " << colors[in->color()] << "\n";
     }

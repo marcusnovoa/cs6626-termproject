@@ -1,15 +1,14 @@
 /*
  * Created by Marcus Novoa & Brandon Olah
- * Last Updated: Apr 24, 2021
+ * Last Updated: Apr 26, 2021
  *
  */
 
 #include "Game.hpp"
 
 Game::Game() {
-	bool creating = true;
 	char creatingChoice = 'Y';
-	while(creating && playerList.count() < 4)
+	while(playerList.count() < 4)
 	{
 		try {
 			Player* newPlayer = getNewPlayer();
@@ -17,12 +16,14 @@ Game::Game() {
 			playerList.addItem(newPlayer);
 			if(numOfPlayers < 4) numOfPlayers++;	// Increase current number of players in-game
 			if(numOfPlayers >= 4) {
-				cout << "\nGame is full.\n" << endl;
+				cout << "\nGame is full." << endl;
 				break;
 			}
 			cout << "\nCreate another player? (y / n): ";
 			cin >> creatingChoice;
-			if(toupper(creatingChoice) == 'N') creating = false;
+			if(toupper(creatingChoice) == 'N') {
+				break;
+			}
 			cout << '\n';
 		} catch (BadPlayer& bp) {
 			cout << bp << endl;
@@ -35,7 +36,7 @@ Game::Game() {
 
 	bool choosing = true;
 	int diceChoice = 0;
-	cout << "1. CantStop Dice, 2. Fake Dice\n";
+	cout << "\n1. CantStop Dice, 2. Fake Dice\n";
 	cout << "[Player " << numOfPlayers << "] Which set of dice would you like to use? ";
 	cin >> diceChoice;
 	cout << '\n';
@@ -106,12 +107,10 @@ Game::hasWinner() {
 
 void
 Game::oneTurn() {
-	int choice;
 	bool choosing = true;
 
 	while(choosing) {
-		choice = turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions);
-		switch(choice) {
+		switch(turnMenu("Pick an Action:\n", ACTIONS_LENGTH, actions)) {
 			case roll:
 				// Begin roll
 				diceSet->roll();
@@ -119,7 +118,7 @@ Game::oneTurn() {
 				// Attempt tower movement
 				if(!(b.move(diceSet->getPairValues()[0]) | 
 					b.move(diceSet->getPairValues()[1]))) {
-					cout << "Busted!\n";
+					cout << "\nBusted!\n" << endl;
 					b.bust();
 					choosing = false;
 					break;
