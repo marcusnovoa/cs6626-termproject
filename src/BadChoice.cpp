@@ -47,3 +47,10 @@ BadColorChoice::print(ostream& out) {
 		<< ", which is not a valid color. Try picking a color again." << endl;
 	return out;
 }
+
+ostream&
+BadDiceSetChoice::print(ostream& out) {
+	out << "\nYou entered: " << badInput
+		<< ", which is not a valid dice set option. Try picking a dice set again." << endl;
+	return out;
+}

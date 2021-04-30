@@ -22,6 +22,7 @@ Game::Game() {
 			cout << "\nCreate another player? (y / n): ";
 			cin >> creatingChoice;
 			if(toupper(creatingChoice) == 'N') {
+				cout << '\n';
 				break;
 			}
 			cout << '\n';
@@ -34,27 +35,27 @@ Game::Game() {
 
 	playerList.init();
 
-	bool choosing = true;
-	int diceChoice = 0;
-	cout << "\n1. CantStop Dice, 2. Fake Dice\n";
-	cout << "[Player " << numOfPlayers << "] Which set of dice would you like to use? ";
-	cin >> diceChoice;
-	cout << '\n';
+	string diceChoice;
+	while (true) {
+		try {
+			cout << "1. CantStop Dice, 2. Fake Dice\n";
+			cout << "[Player " << numOfPlayers << "] Which set of dice would you like to use? ";
+			cin >> diceChoice;
 
-	while (choosing) {
-		switch(diceChoice) {
-			case 1:
+			if (stoi(diceChoice) == 1) {
 				diceSet = new CantStopDice();
 				usingFakeDice = false;
-				choosing = false;
-				break;
-			case 2:
+				cout << '\n';
+			} else if (stoi(diceChoice) == 2) {
 				diceSet = new FakeDice();
 				usingFakeDice = true;
-				choosing = false;
-				break;
-			default:
-				cout << "\nInvalid option. Please try again.\n";
+				cout << '\n';
+			} else {
+				throw BadDiceSetChoice(diceChoice);
+			}
+			break;
+		} catch(BadDiceSetChoice& bdsc) {
+			cout << bdsc << endl;
 		}
 	}
 }

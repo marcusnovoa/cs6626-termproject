@@ -63,4 +63,12 @@ public:
 	ostream& print(ostream& out);
 };
 
+class BadDiceSetChoice : public BadChoice {
+public:
+	BadDiceSetChoice() = default;
+	BadDiceSetChoice(string data) : BadChoice(data){};
+	~BadDiceSetChoice() = default;
+	ostream& print(ostream& out);
+};
+
 #endif /* BADCHOICE_HPP_ */
