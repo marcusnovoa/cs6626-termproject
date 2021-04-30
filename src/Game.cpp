@@ -42,11 +42,11 @@ Game::Game() {
 			cout << "[Player " << numOfPlayers << "] Which set of dice would you like to use? ";
 			cin >> diceChoice;
 
-			if (stoi(diceChoice) == 1) {
+			if ((int) (diceChoice[0] - '0') == 1) {
 				diceSet = new CantStopDice();
 				usingFakeDice = false;
 				cout << '\n';
-			} else if (stoi(diceChoice) == 2) {
+			} else if ((int) (diceChoice[0] - '0') == 2) {
 				diceSet = new FakeDice();
 				usingFakeDice = true;
 				cout << '\n';
