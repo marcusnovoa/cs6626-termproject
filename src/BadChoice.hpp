@@ -71,4 +71,12 @@ public:
 	ostream& print(ostream& out);
 };
 
+class BadNewPlayerConfirm : public BadChoice {
+public:
+	BadNewPlayerConfirm() = default;
+	BadNewPlayerConfirm(string data) : BadChoice(data){};
+	~BadNewPlayerConfirm() = default;
+	ostream& print(ostream& out);
+};
+
 #endif /* BADCHOICE_HPP_ */

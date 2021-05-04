@@ -54,3 +54,10 @@ BadDiceSetChoice::print(ostream& out) {
 		<< ", which is not a valid dice set option. Try picking a dice set again." << endl;
 	return out;
 }
+
+ostream&
+BadNewPlayerConfirm::print(ostream& out) {
+	out << "\nYou entered: " << badInput
+		<< ", which is not 'y' or 'n'. Try picking the option again.";
+	return out;
+}

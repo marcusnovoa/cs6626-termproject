@@ -7,10 +7,11 @@
 #include "Game.hpp"
 
 Game::Game() {
-	char creatingChoice = 'Y';
+	string creatingChoice;
 	while(playerList.count() < 4)
 	{
 		try {
+			if (toupper(creatingChoice[0]) == 'N') break;
 			Player* newPlayer = getNewPlayer();
 			checkData(newPlayer->getName() + " " + to_string(newPlayer->color()));
 			playerList.addItem(newPlayer);
@@ -19,13 +20,21 @@ Game::Game() {
 				cout << "\nGame is full." << endl;
 				break;
 			}
-			cout << "\nCreate another player? (y / n): ";
-			cin >> creatingChoice;
-			if(toupper(creatingChoice) == 'N') {
-				cout << '\n';
-				break;
+			while(true) {
+				try {
+					cout << "\nCreate another player? (y / n): ";
+					cin >> creatingChoice;
+					if (toupper(creatingChoice[0]) == 'Y' ||
+						toupper(creatingChoice[0]) == 'N') {
+						cout << '\n';
+						break;
+					} else if (toupper(creatingChoice[0]) != 'Y') {
+						throw BadNewPlayerConfirm(creatingChoice);
+					}
+				} catch(BadNewPlayerConfirm& bnpc) {
+					cout << bnpc << endl;
+				}
 			}
-			cout << '\n';
 		} catch (BadPlayer& bp) {
 			cout << bp << endl;
 		} catch (...) {
